@@ -1,0 +1,20 @@
+.navBar {
+    display: flex;
+    flex-direction: row;
+    margin-left: 1rem;
+    align-items: center;
+}
+
+.navBar-menu {
+    display: flex;
+    flex-direction: row;
+}
+
+.navBar-menu-item {
+    list-style-type: none;
+    padding: 0 1rem;
+}
+.navBar-menu-item-link {
+    text-decoration: none;
+    color: black;
+}

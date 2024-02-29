@@ -12,9 +12,29 @@
 
 .navBar-menu-item {
     list-style-type: none;
-    padding: 0 1rem;
+    padding: 0 1.5rem;
 }
+
 .navBar-menu-item-link {
     text-decoration: none;
     color: black;
 }
+
+div.resourcePage li.resources .navBar-menu-item-link,
+div.discussionForumPage li.discussionForum .navBar-menu-item-link,
+div.FAQPage li.FAQ .navBar-menu-item-link {
+    border-bottom: 2px solid lightgrey;
+}
+
+.navBar-spacer {
+    padding: 5vw;
+    background-color: lightgray;
+}
+
+@media (min-width:769px) {
+    .navBar-spacer {
+        padding: 50px;
+    }
+}
+
+

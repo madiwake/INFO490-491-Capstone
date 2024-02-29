@@ -8,6 +8,7 @@
 .navBar-menu {
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 
 .navBar-menu-item {
@@ -24,6 +25,7 @@ div.resourcePage li.resources .navBar-menu-item-link,
 div.discussionForumPage li.discussionForum .navBar-menu-item-link,
 div.FAQPage li.FAQ .navBar-menu-item-link {
     border-bottom: 2px solid lightgrey;
+    font-size: 1.125rem;
 }
 
 .navBar-spacer {

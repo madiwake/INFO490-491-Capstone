@@ -11,6 +11,10 @@
     align-items: center;
 }
 
+.navBar-logo h1 {
+    color: #6C98FC;
+}
+
 .navBar-menu-item {
     list-style-type: none;
     padding: 0 1.5rem;
@@ -18,19 +22,24 @@
 
 .navBar-menu-item-link {
     text-decoration: none;
-    color: black;
+    color: #2F4775;
 }
 
 div.resourcePage li.resources .navBar-menu-item-link,
 div.discussionForumPage li.discussionForum .navBar-menu-item-link,
 div.FAQPage li.FAQ .navBar-menu-item-link {
-    border-bottom: 2px solid lightgrey;
+    font-weight: bold;
     font-size: 1.125rem;
 }
 
 .navBar-spacer {
     padding: 5vw;
     background-color: lightgray;
+}
+
+.navBar-banner-img {
+    width: 100%;
+    height: auto;
 }
 
 @media (min-width:769px) {

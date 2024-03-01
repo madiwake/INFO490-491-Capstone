@@ -4,7 +4,7 @@ import Navigation from './NavigationBar';
 export default function ResourcePage(props) {
     return (
         <div className="resourcePage">
-            <Navigation />
+            <Navigation pageTitle={'Resources'} />
         </div>
     )
 }

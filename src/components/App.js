@@ -10,7 +10,7 @@ import ResourcePage from './ResourcePage';
 function App(props) {
   return (
     <Routes>
-      <Route path='resources' element={<ResourcePage />} />
+      <Route path='resources' element={<ResourcePage onlineResources={props.onlineResources} uwResources={props.uwResources} seattleResources={props.seattleResources} />} />
       <Route path='discussion-forum' element={<DiscussionForumPage />} />
       <Route path='FAQ' element={<FAQPage />} />
       <Route path='/' element={<Navigate to='/resources'/>}/>

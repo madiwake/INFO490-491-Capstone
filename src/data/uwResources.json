@@ -1,0 +1,146 @@
+[
+    {
+        "image":"img/d-center.png",
+        "alt":"D-Center logo, purple letters 'DC'",
+        "name":"D-Center",
+        "description":"The D Center is a space and community where students can celebrate disability and D/deaf pride and foster community at the UW and beyond",
+        "link":"https://depts.washington.edu/dcenter/",
+        "tags":["",""]
+    },
+    {
+        "image":"img/accessible-routes.png",
+        "alt":"Cherry blossom trees in the quad at UW. Campus building in the background behind the trees.",
+        "name":"UW Facilities - Accessible Routes",
+        "description":"The UW is committed to ensuring access and inclusion for all. This website is our information hub to help community members with disabilities navigate the campus using the access guide.",
+        "link":"https://facilities.uw.edu/access-guide",
+        "tags":["",""]
+    },
+    {
+        "image":"img/disability-parking.png",
+        "alt":"Two handi-cap parking stalls",
+        "name":"Disability Parking",
+        "description":"Disability Parking is an accommodation that allows the student to purchase a long-term Disability Parking Permit for an assigned lot on the relevant campus through the relevant campus Transportation Services office.",
+        "link":"https://depts.washington.edu/uwdrs/current-students/accommodations/disability-parking/",
+        "tags":["",""]
+    },
+    {
+        "image":"img/learn-clinic.png",
+        "alt":"Two people sitting at a desk. The two people are looking at papers on the desk. The older blonde woman is instructing a women brunette woman.",
+        "name":"The Learn Clinic",
+        "description":"The LEARN Clinic is a self-sustained specialty clinic within the University of Washington’s Psychological Services and Training Clinic.",
+        "link":"https://psych.uw.edu/community/the-clinic/the-learn-clinic",
+        "tags":["",""]
+    },
+    {
+        "image":"img/drs.png",
+        "alt":"Disability resources for students logo. Text is set on a picture of mount rainier",
+        "name":"DRS - Disability Resource Center",
+        "description":"An organization within UW, providing support, accommodations, and resources to individuals with disabilities, ensuring access and inclusion for all students with disabilities.",
+        "link":"https://depts.washington.edu/uwdrs/",
+        "tags":["",""]
+    },
+    {
+        "image":"img/disability-studies.png",
+        "alt":"Picture of the UW campus",
+        "name":"Disability Studies UW",
+        "description":"Disability Studies is a multi-disciplinary field that investigates, critiques, and enhances Western society’s understandings of disability. ",
+        "link":"https://disabilitystudies.washington.edu/",
+        "tags":["",""]
+    },
+    {
+        "image":"img/accommodations.png",
+        "alt":"graphic design of a computer with with a human icon on it. Above the computer are 3 more icons, a gear and a human profile, an eyeball, and an ear. Below the computer is two hands opening to that the computer is visible",
+        "name":"UW Common Accommodations",
+        "description":"Common accommodations for UW students to explore on campus.",
+        "link":"https://depts.washington.edu/uwdrs/current-students/accommodations/",
+        "tags":["",""]
+    },
+    {
+        "image":"img/pupsupport.png",
+        "alt":"Pupsupport club logo. Two cartoon dogs facing eachother, with one with its back ot the camera. The light grey dog facing the camera is laughing and the dark grey dog with its back to the camera has a comment icon next to it with a heart inside.",
+        "name":"PupSupport",
+        "description":"Pup Support is a student-led organization with a focus on providing mental health resources to college students creatively. They help break the barriers that college students face with their mental health and ultimately help our community sustain and develop healthy mental health skills.",
+        "link":"http://depts.washington.edu/ecc/cultivating-a-culture-of-care-initiative/uw-pup-support/",
+        "tags":["",""]
+    },
+    {
+        "image":"img/bestbuddies.png",
+        "alt":"Two cartoon people dancing joyfully, one wearing a blue shirt and the other a red shirt. The words 'Best Buddies' are written above them.",
+        "name":"Best Buddies",
+        "description":"Best Buddies International is an international nonprofit dedicated to establishing a global movement that creates opportunities for one-to-one friendships, integrated employment, leadership development, and inclusive living for individuals with intellectual and developmental disabilities (IDD).",
+        "link":"https://careers.uw.edu/organizations/best-buddies/",
+        "tags":["",""]
+    },
+    {
+        "image":"img/adlj.png",
+        "alt":"The Alliance for Disability Law and Justice logo. A purpuple bacground with a light gold circle in the middle. In the circle at bold letter A,D,L, and J with a small text stating Alliance for Disability Law and Justice",
+        "name":"Alliance for Disability Law and Justice",
+        "description":"The Alliance for Disability Law and Justice (ADLJ) at UW Law advocates for a more inclusive, accessible, and holistic approach to law school from a foundation of anti-racism, intersectionality, and anti-ableism. ",
+        "link":"https://depts.washington.edu/dcenter/alliance-for-disability-law-and-justice-adlj/",
+        "tags":["",""]
+    },
+    {
+        "image":"img/ability/png",
+        "alt":"Blue background with the word 'ability' in bold orange letters.",
+        "name":"Ability",
+        "description":"Ability's goal is to create disability community and accessibility awareness within the computing community. Our club is open to all UW students, but based in the Allen School for Computer Science & Engineering. The computing community at UW is a tight-knit community.",
+        "link":"https://depts.washington.edu/dcenter/ability/",
+        "tags":["",""]
+    },
+    {
+        "image":"img/aslclub.png",
+        "alt":"Alphabet of sign language: A visual representation of hand gestures forming the letters A, S, and L",
+        "name":"UW ASL Club",
+        "description":"We bring Deaf, hard-of-hearing, and hearing students together by communicating in sign language, learning about the Deaf culture, and providing support to the Deaf community.",
+        "link":"https://depts.washington.edu/dcenter/asl-club/",
+        "tags":["",""]
+    },
+    {
+        "image":"img/huskies-for-neurodiversity.png",
+        "alt":"A sleek, captivating design combining a wolf and the infinity symbol, symbolizing limitless strength and eternal unity. Infinity sign is raainbow colored.",
+        "name":"Huskies for Neurodiversity",
+        "description":"Huskies for Neurodiversity is a student-led initiative that promotes visibility and acceptance of neurodiversity at UW campus and beyond through articles, lived experience interviews with neurodivergent people, interactive website, and panel events.",
+        "link":"https://huskylink.washington.edu/engage/organization/huskiesforneurodiversity",
+        "tags":["",""]
+    },
+    {
+        "image":"img/sdc.png",
+        "alt":"ASUW student disability comission logo. White background with a purple circle in the center. In the circle are big bold white letters 'SDC' with smaller letters 'ASUW' under it. Around the diameter of the circle are the phrases 'student disability commission' and 'university of washington'",
+        "name":"ASUW Student Disability Commission",
+        "description":"The SDC is a student-led disability advocacy organization housed under ASUW. The SDC puts on events addressing relevant topics within the Disability community, and advocates on campus for greater access for disabled students.",
+        "link":"http://sdc.asuw.org/",
+        "tags":["",""]
+    },
+    {
+        "image":"img/autistics-at-uw.png",
+        "alt":"three small drawn animal looking creatures all holding hands. one has headphones on. another one is holding a big flag that is over htem. the flag has an infinity symbol colored in rainbow colors and the text 'no missing pieces' across it.",
+        "name":"Autistics @ UW",
+        "description":"We hope to provide a friendly and accessible social space for UW students who are Autistic or questioning if they are Autistic. It is a way for Autistic/questioning students to make friends with others on the spectrum and participate in social events that are designed to be aware of their needs.",
+        "link":"https://huskylink.washington.edu/organization/autistics",
+        "tags":["",""]
+    },
+    {
+        "image":"img/dasa.png",
+        "alt":"A diverse group of graphic design people icons with various disabilities (wheelchair bound, blind with a service dog and a cane, an amputee, etc) standing together. Each person graphic is a different color. from left to right the colors of the people icons are red, blue, yellow, green, purple.",
+        "name":"DASA - Disability Advocacy Student Alliance",
+        "description":"DASA is a student group facilitated for and by students. Our goal is to address the needs and concern of the disability community and its allies on the University of Washington campus regarding the issue of disability. We aim to represent student interest while working with allied student groups, UW administration and the off campus community.",
+        "link":"https://depts.washington.edu/dcenter/dasa/",
+        "tags":["",""]
+    },
+    {
+        "image":"img/do-it.png",
+        "alt":"a woman sitting at a desk that has a computer in front of her. she is looking at a man that is in partial view and is talking to her. in the background is another person sitting sat a computer, but not conversing with anyone.",
+        "name":"DO-IT - Disabilities, Opportunities, Internetworking, and Technology",
+        "description":"The DO-IT (Disabilities, Opportunities, Internetworking, and Technology) Center is dedicated to empowering people with disabilities through technology and education. It promotes awareness and accessibility—in both the classroom and the workplace—to maximize the potential of individuals with disabilities and make our communities more vibrant, diverse, and inclusive.",
+        "link":"https://www.washington.edu/doit/",
+        "tags":["",""]
+    },
+    {
+        "image":"img/husky-adapt.png",
+        "alt":"A graphic design of a brown teddy bear wearing a purple bowtie. the teddybear has a black cord attached to it and that also attched to a controlled that has a red button on it. the bear and the controlled with the red button on it are sitting on a light grey graphic shape, almost mimicking a carpet.",
+        "name":"Husky ADAPT - Accessible Design and Play Technology",
+        "description":"Husky ADAPT is a student organization at the University of Washington, Seattle campus that is dedicated to supporting accessible design and inclusive play technology. We train the next generation of inclusively-minded engineers, clinicians, and educators to help make the world a more equitable place.",
+        "link":"https://www.huskyadapt.me.uw.edu/",
+        "tags":["",""]
+    }
+]

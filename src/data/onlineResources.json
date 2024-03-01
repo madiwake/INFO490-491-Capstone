@@ -1,0 +1,42 @@
+[
+    {
+        "image":"img/betterhelp.png",
+        "alt":"a graphic design with a forest green background and the white text 'you deserve to be happy' at the top of the picture. below that is the question 'what type of therapy are you looking for?' in white text. under that question are three options in the form of a light green box that says 'individual, for myself' and has a graphic design woman sitting at a desk with a plant on it, a blue box that says 'couples, for me and my partner that' and has a two people hugging, and lastly an oragen box that says 'teen, for my child' that has a younger looking graphic deisgn person sitting on the ground",
+        "name":"Better Help",
+        "description":"BetterHelp is an online therapy platform that provides accessible mental health services to individuals seeking support for various concerns such as depression, anxiety, relationship issues, etc. Therapy is offered through messaging, live chat, phone calls, and video sessions, allowing users to communicate with licensed therapists at their own pace and convenience.",
+        "link":"https://www.betterhelp.com/get-started/?go=true&utm_content=133524759310&utm_source=AdWords&utm_medium=Search_PPC_c&utm_term=betterhelp_b&network=g&placement=&target=&matchtype=b&utm_campaign=15234220559&ad_type=text&adposition=&kwd_id=kwd-299033048821&gad_source=1&gclid=EAIaIQobChMIhef6kcHShAMVRzCtBh2clg5bEAAYASAAEgJJpPD_BwE&not_found=1&gor=start",
+        "tags":["",""]
+    },
+    {
+        "image":"img/quartet-health.png",
+        "alt":"Curly-haired woman in pink sweater with her hands on her cheeks while she smiles brightly",
+        "name":"Quartet Health",
+        "description":"Quartet offers personalized care navigation services and connects individuals with mental health providers and resources to improve their overall well-being.",
+        "link":"https://www.quartethealth.com/",
+        "tags":["",""]
+    },
+    {
+        "image":"img/alma.png",
+        "alt":"a green background with white text that says 'we're on a mission to simplify access to high-quality, affordable mental health care'",
+        "name":"Alma",
+        "description":"Alma is a community of independent mental health care providers. While our team helps you navigate the search process, we don’t prescribe the rest. Each provider at Alma sets their own rates and makes their own decisions about going in-network with major insurance payers.",
+        "link":"https://secure.helloalma.com/providers-landing/?utm_campaign=19949052412&utm_source=google&utm_medium=paid&utm_content=654402477788&utm_term=e_alma&adgroupid=144736291581&gclid=EAIaIQobChMI55XcqsHShAMVgR-tBh1y9wTWEAAYASAAEgLgq_D_BwE",
+        "tags":["",""]
+    },
+    {
+        "image":"img/meetup.png",
+        "alt":"meetup logo. white background with pink text that says 'meet up'",
+        "name":"Meetup",
+        "description":"Meet other local people interested in neurodiversity and disabilities: share experiences, inspire and encourage each other! Join a neurodiversity and or disability group.",
+        "link":"https://www.meetup.com/",
+        "tags":["",""]
+    },
+    {
+        "image":"img/psychology-today.png",
+        "alt":"a light purple-blue background with white text that says 'psychology today'",
+        "name":"Psychology Today",
+        "description":"An online platform that covers a wide range of topics related to psychology, mental health, and well-being. Features articles, blogs, news, and expert insights on various psychological topics, including therapy, relationships, self-improvement, and mental health conditions. Provides directories of therapists, psychiatrists, support groups, and treatment centers to help individuals find mental health resources in the area.",
+        "link":"https://www.psychologytoday.com/us/therapists/online-counseling",
+        "tags":["",""]
+    }
+]

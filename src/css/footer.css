@@ -1,0 +1,17 @@
+.footer {
+    background-color: #2F4675;
+}
+.footer small {
+    padding: 0 .5rem;
+    color: #EAEAEA;
+}
+
+.footer .contact-container {
+    padding-top: 1rem;
+}
+
+.footer .bottom-row-footer {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+}

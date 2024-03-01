@@ -3,6 +3,7 @@
     flex-direction: row;
     margin-left: 1rem;
     align-items: center;
+    padding-top: .5rem;
 }
 
 .navBar-menu {
@@ -44,7 +45,7 @@ div.FAQPage li.FAQ .navBar-menu-item-link {
 
 .navBar-banner-overlay-title {
     position: absolute;
-    bottom: -17.5px;
+    bottom: -8px;
 }
 
 .navBar-banner-overlay-title h1 {

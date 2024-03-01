@@ -1,0 +1,41 @@
+.resourcePage-content-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.filterBar {
+    width: 20%;
+    padding-left: 1.5rem;
+}
+
+.filterBar h2 {
+    font-family: "Raleway", sans-serif;
+    font-weight: bold;
+    font-size: 1.125rem;
+    margin: 1.75rem 0 .75rem 0;
+}
+
+.filterBar-options {
+    padding: 0;
+    margin-top: 0;
+}
+.filterBar-options li {
+    list-style-type: none;
+}
+.filterBar-options li button {
+    background-color: white;
+    border-top: 1px solid #6C98FC;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    padding: 1rem;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+.filterBar-options li button.last-button {
+    border-bottom: 1px solid #6C98FC;
+}
+.filterBar-options li button img {
+    width: 13px;
+}

@@ -7,17 +7,18 @@
 
 .navBar-menu {
     display: flex;
-    flex-direction: row;
     align-items: center;
+    flex-wrap: wrap;
+    flex-grow: 1;
 }
 
-.navBar-logo h1 {
+.navBar-logo {
     color: #6C98FC;
 }
 
 .navBar-menu-item {
     list-style-type: none;
-    padding: 0 1.5rem;
+    padding: 0 1rem;
 }
 
 .navBar-menu-item-link {
@@ -32,14 +33,25 @@ div.FAQPage li.FAQ .navBar-menu-item-link {
     font-size: 1.125rem;
 }
 
-.navBar-spacer {
-    padding: 5vw;
-    background-color: lightgray;
+.navBar-banner-container {
+    position: relative;
 }
 
 .navBar-banner-img {
     width: 100%;
     height: auto;
+}
+
+.navBar-banner-overlay-title {
+    position: absolute;
+    bottom: -17.5px;
+}
+
+.navBar-banner-overlay-title h1 {
+    background-color: #2F4775;
+    color: white;
+    padding: .25rem 1rem 0 .5rem;
+    border-top-right-radius: 25px;
 }
 
 @media (min-width:769px) {

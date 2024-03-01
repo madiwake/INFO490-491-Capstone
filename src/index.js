@@ -4,6 +4,7 @@ import App from './components/App';
 import { BrowserRouter } from 'react-router-dom';
 import './css/index.css';
 import './css/navigation.css';
+import './css/resourcePageStyling.css';
 
 // import browser router and wrap app
 const root = ReactDOM.createRoot(document.getElementById('root'));

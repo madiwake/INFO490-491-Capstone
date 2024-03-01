@@ -1,0 +1,41 @@
+[
+    {
+        "resourceType":"UW Resources", 
+        "resources":[
+            {
+                "image":"/img/d-center.png",
+                "alt":"D-Center logo, purple letters 'DC'",
+                "name":"D-Center",
+                "description":"The D Center is a space and community where students can celebrate disability and D/deaf pride and foster community at the UW and beyond",
+                "link":"https://depts.washington.edu/dcenter/",
+                "tags":["",""]
+            }
+        ]
+    },
+    {
+        "resourceType":"Seattle Resources", 
+        "resources":[
+            {
+                "image":"",
+                "alt":"",
+                "name":"",
+                "description":"",
+                "link":"",
+                "tags":["",""]
+            }
+        ]
+    },
+    {
+        "resourceType":"Online Resources", 
+        "resources":[
+            {
+                "image":"",
+                "alt":"",
+                "name":"",
+                "description":"",
+                "link":"",
+                "tags":["",""]
+            }
+        ]
+    }
+]

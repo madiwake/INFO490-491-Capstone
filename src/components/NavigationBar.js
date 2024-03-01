@@ -5,9 +5,7 @@ export default function NavigationBar(props) {
     return (
         <header>
             <nav className='navBar'>
-                <div className='navBar-logo'>
-                    <h1>LOGO</h1>
-                </div>
+                <h1 className='navBar-logo'>LOGO</h1>
                 <ul className='navBar-menu'>
                     <li className='navBar-menu-item resources'>
                         <Link 
@@ -38,7 +36,7 @@ export default function NavigationBar(props) {
             <div className='navBar-banner-container'>
                 <img 
                     className='navBar-banner-img' 
-                    src='/img/page-banner.png'
+                    src='/img/page-banner.jpeg'
                     alt='light purple banner snapping the entirety of the window. banner includes a simple graphic cityscape of seattle in the center' 
                 />
                 <div className='navBar-banner-overlay-title'>

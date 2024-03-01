@@ -10,31 +10,31 @@ function FilterBar() {
             <h2>Filter</h2>
             <ul className="filterBar-options">
                 <li>
-                    <button>
+                    <button type='button' className="filterBar-option-button">
                         Support Groups
                         <img src="/img/plus-icon.png" alt="plus icon"/>
                     </button>
                 </li>
                 <li>
-                    <button>
+                    <button type='button' className="filterBar-option-button">
                         Therapy
                         <img src="/img/plus-icon.png" alt="plus icon"/>
                     </button>
                 </li>
                 <li>
-                    <button>
+                    <button type='button' className="filterBar-option-button">
                         Housing
                         <img src="/img/plus-icon.png" alt="plus icon"/>
                     </button>
                 </li>
                 <li>
-                    <button>
+                    <button type='button' className="filterBar-option-button">
                         Employment
                         <img src="/img/plus-icon.png" alt="plus icon"/>
                     </button>
                 </li>
                 <li>
-                    <button className="last-button">
+                    <button type='button' className="filterBar-option-button last-button">
                         Clubs
                         <img src="/img/plus-icon.png" alt="plus icon"/>
                     </button>

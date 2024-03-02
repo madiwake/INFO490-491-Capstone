@@ -45,13 +45,32 @@ function FilterBar() {
 };
 
 function Resources(props) {
-    console.log(props.resourceType)
+    const resourceData = props.resourceData;
+    const resourceCards = resourceData.map((resource) => {
+        const tags = resource.tags.map((tag) => {
+            return (
+                <li key={tag} className={`${resource.tag} resource-card-tag`}>{tag}</li>
+            )
+        })
+        return (
+            <div key={resource.name} className="resource-card-container">
+                <h3 className="resource-card-name">{resource.name}</h3>
+                <img className="resource-card-img" src={resource.image} alt={resource.alt} />
+                <ul>
+                    {tags}
+                </ul>
+                <p>{resource.description}</p>
+                <a href={resource.link} target="_blank">GO TO RESOURCE</a>
+            </div>
+        )
+    });
     return (
         <div className="resourcePage-content-container">
             <FilterBar />
             <div className="resources">
                 <h2>{props.resourceType}</h2>
-                {props.resourceType}
+                {resourceCards}
+                {/* {props.resourceType} */}
             </div>
         </div>
     )

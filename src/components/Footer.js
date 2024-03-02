@@ -13,7 +13,7 @@ export default function Footer(){
                 <small>
                     servicedawgs@uw.edu
                 </small>
-                <small>
+                <small className="copyright">
                     ©ServiceDawgs 2024
                 </small>
             </div>

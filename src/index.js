@@ -16,7 +16,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <App 
-      onlineResource={ONLINERESOURCES} 
+      onlineResources={ONLINERESOURCES} 
       seattleResources={SEATTLERESOURCES} 
       uwResources={UWRESOURCES} 
     />

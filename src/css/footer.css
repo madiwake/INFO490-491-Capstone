@@ -9,6 +9,14 @@
 .footer .contact-container {
     padding-top: 1rem;
 }
+.footer .contact-container small {
+    display: flex;
+    align-items: center;
+}
+
+.footer .contact-container img {
+    padding-left: .5rem;
+}
 
 .footer .bottom-row-footer {
     display: flex;

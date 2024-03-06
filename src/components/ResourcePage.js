@@ -49,18 +49,26 @@ function Resources(props) {
     const resourceCards = resourceData.map((resource) => {
         const tags = resource.tags.map((tag) => {
             return (
-                <li key={tag} className={`${resource.tag} resource-card-tag`}>{tag}</li>
+                <li key={tag} className='resource-card-tag'>{tag}</li>
             )
         })
         return (
             <div key={resource.name} className="resource-card-container">
-                <h3 className="resource-card-name">{resource.name}</h3>
-                <img className="resource-card-img" src={resource.image} alt={resource.alt} />
-                <ul>
-                    {tags}
-                </ul>
-                <p>{resource.description}</p>
-                <a href={resource.link} target="_blank">GO TO RESOURCE</a>
+                <div>
+                    <h3 className="resource-card-name">{resource.name}</h3>
+                    <img className="resource-card-img" src={resource.image} alt={resource.alt} />
+                    <ul className="resource-card-tags-container">
+                        {tags}
+                    </ul>
+                    <p>{resource.description}</p>
+                </div>
+                <a 
+                    className="resource-card-button" 
+                    href={resource.link} 
+                    target="_blank"
+                >
+                    GO TO RESOURCE
+                </a>
             </div>
         )
     });
@@ -69,8 +77,9 @@ function Resources(props) {
             <FilterBar />
             <div className="resources">
                 <h2>{props.resourceType}</h2>
-                {resourceCards}
-                {/* {props.resourceType} */}
+                <div className="resource-all-cards-container">
+                    {resourceCards}
+                </div>
             </div>
         </div>
     )

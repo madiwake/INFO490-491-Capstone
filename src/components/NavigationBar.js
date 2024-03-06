@@ -7,7 +7,7 @@ export default function NavigationBar(props) {
             <nav className='navBar'>
                 <h1 className='navBar-logo'>LOGO</h1>
                 <ul className='navBar-menu'>
-                    <li className='navBar-menu-item resources'>
+                    <li className='navBar-menu-item resources-link'>
                         <Link 
                             to='/resources' 
                             className='navBar-menu-item-link'
@@ -15,7 +15,7 @@ export default function NavigationBar(props) {
                             Resources
                         </Link>
                     </li>
-                    <li className='navBar-menu-item discussionForum'>
+                    <li className='navBar-menu-item discussionForum-link'>
                         <Link 
                             to='/discussion-forum' 
                             className='navBar-menu-item-link'
@@ -23,7 +23,7 @@ export default function NavigationBar(props) {
                             Discussion
                         </Link>
                     </li>
-                    <li className='navBar-menu-item FAQ'>
+                    <li className='navBar-menu-item FAQ-link'>
                         <Link 
                             to='/FAQ' 
                             className='navBar-menu-item-link'

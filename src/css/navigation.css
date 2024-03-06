@@ -27,9 +27,9 @@
     color: #2F4775;
 }
 
-div.resourcePage li.resources .navBar-menu-item-link,
-div.discussionForumPage li.discussionForum .navBar-menu-item-link,
-div.FAQPage li.FAQ .navBar-menu-item-link {
+div.resourcePage li.resources-link .navBar-menu-item-link,
+div.discussionForumPage li.discussionForum-link .navBar-menu-item-link,
+div.FAQPage li.FAQ-link .navBar-menu-item-link {
     font-weight: bold;
     font-size: 1.125rem;
 }

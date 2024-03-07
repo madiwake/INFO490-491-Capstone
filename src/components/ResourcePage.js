@@ -52,6 +52,10 @@ function Resources(props) {
                 <li key={tag} className='resource-card-tag'>{tag}</li>
             )
         })
+        // have the tags be one work (UW not UW Resource, then when rendering add the "Resource" part)
+        // then use the tag as part of the classname to then style the different tags with different 
+        // background colors
+        // IN DATASET HAVE TAGS BE ONE KEY WORD AND ALTER DISPLAY LATER IF ADDITIONAL WORDS ARE NEEDED
         return (
             <div key={resource.name} className="resource-card-container">
                 <div>

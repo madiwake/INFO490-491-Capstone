@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, {  useEffect, useState } from "react";
 import Navigation from './NavigationBar';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
@@ -10,97 +10,51 @@ function FilterBar(props) {
 
     const handleFilterSelection = (filterKind) => {
         const addFilter = (filterToAdd) => {
-            setSelectedFilters([...selectedFilters, filterToAdd])
-        }
+            setSelectedFilters([...selectedFilters, filterToAdd]);
+        };
         const removeFilter = (filterToRemove) => {
             setSelectedFilters(
                 selectedFilters.filter(
                     (currentFilter) => currentFilter !== filterToRemove
                 )
-            )
-        }
+            );
+        };
 
         if (selectedFilters.includes(filterKind)) {
             removeFilter(filterKind);
         } else {
             addFilter(filterKind);
-        }
-    }
+        };
+    };
+
+    const FilterOption = ({filterName}) => {
+        return (
+            <li>
+                <button 
+                    type='button' 
+                    className="filterBar-option-button"
+                    onClick={() => {handleFilterSelection(filterName)}}
+                >
+                    {filterName}
+                    {selectedFilters.includes(filterName) ? (
+                        <img className="filterBar-option-removeicon" src="/img/remove-icon.png" alt="plus icon"/> 
+                        ) : (
+                        <img className="filterBar-option-plusicon" src="/img/plus-icon.png" alt="X icon"/>
+                    )}
+                </button>
+            </li>
+        );
+    };
 
     return (
         <div className="filterBar">
             <h2>Filter</h2>
             <ul className="filterBar-options">
-                <li>
-                    <button 
-                        type='button' 
-                        className="filterBar-option-button"
-                        onClick={() => {handleFilterSelection('Support Group')}}
-                    >
-                        Support Group
-                        {selectedFilters.includes('Support Group') ? (
-                            <img className="filterBar-option-removeicon" src="/img/remove-icon.png" alt="plus icon"/> 
-                            ) : (
-                            <img className="filterBar-option-plusicon" src="/img/plus-icon.png" alt="X icon"/>
-                        )}
-                    </button>
-                </li>
-                <li>
-                    <button 
-                        type='button' 
-                        className="filterBar-option-button"
-                        onClick={() => {handleFilterSelection('Therapy')}}
-                    >
-                        Therapy
-                        {selectedFilters.includes('Therapy') ? (
-                            <img className="filterBar-option-removeicon" src="/img/remove-icon.png" alt="plus icon"/> 
-                            ) : (
-                            <img className="filterBar-option-plusicon" src="/img/plus-icon.png" alt="X icon"/>
-                        )}
-                    </button>
-                </li>
-                <li>
-                    <button 
-                        type='button' 
-                        className="filterBar-option-button"
-                        onClick={() => {handleFilterSelection('Housing')}}
-                    >
-                        Housing
-                        {selectedFilters.includes('Housing') ? (
-                            <img className="filterBar-option-removeicon" src="/img/remove-icon.png" alt="plus icon"/> 
-                            ) : (
-                            <img className="filterBar-option-plusicon" src="/img/plus-icon.png" alt="X icon"/>
-                        )}
-                    </button>
-                </li>
-                <li>
-                    <button 
-                        type='button' 
-                        className="filterBar-option-button"
-                        onClick={() => {handleFilterSelection('Employment')}}
-                    >
-                        Employment
-                        {selectedFilters.includes('Employment') ? (
-                            <img className="filterBar-option-removeicon" src="/img/remove-icon.png" alt="plus icon"/> 
-                            ) : (
-                            <img className="filterBar-option-plusicon" src="/img/plus-icon.png" alt="X icon"/>
-                        )}
-                    </button>
-                </li>
-                <li>
-                    <button 
-                        type='button' 
-                        className="filterBar-option-button"
-                        onClick={() => {handleFilterSelection('Club')}}
-                    >
-                        Clubs
-                        {selectedFilters.includes('Club') ? (
-                            <img className="filterBar-option-removeicon" src="/img/remove-icon.png" alt="plus icon"/> 
-                            ) : (
-                            <img className="filterBar-option-plusicon" src="/img/plus-icon.png" alt="remove icon"/>
-                        )}
-                    </button>
-                </li>
+                <FilterOption filterName={'Support Group'} />
+                <FilterOption filterName={'Therapy'} />
+                <FilterOption filterName={'Housing'} />
+                <FilterOption filterName={'Employment'} />
+                <FilterOption filterName={'Club'} />
             </ul>
         </div>
     );
@@ -108,19 +62,31 @@ function FilterBar(props) {
 
 function Resources(props) {
     const resourceData = props.resourceData;
-    const resourceCards = resourceData.map((resource) => {
+    const [filteredResourceData, setFilteredResourceData] = useState(resourceData);
+
+    useEffect(() => {
+        const includesAll = (resources, currentFilters) => currentFilters.every(filter => resources.includes(filter));
+        if (props.selectedFilters.length === 0) {
+            setFilteredResourceData(resourceData);
+        } else {
+            setFilteredResourceData(
+                resourceData.filter((resource) => includesAll(resource.tags, props.selectedFilters)) 
+            )
+        };
+    }, [props.selectedFilters, resourceData]);
+
+    const resourceCards = filteredResourceData.map((resource) => {
         const tags = resource.tags.map((tag) => {
             if (tag === "UW" | tag === "Seattle" | tag === "Online" ) {
                 return (
                     <li key={tag} className={`${tag} resource-card-tag`}>{tag} Resource</li>
-                )
+                );
             } else {
                 return (
                     <li key={tag} className={`${tag} resource-card-tag`}>{tag}</li>
-                )
-            }
-        })
-        console.log(props.selectedFilters);
+                );
+            };
+        });
         return (
             <div key={resource.name} className="resource-card-container">
                 <div>
@@ -140,8 +106,9 @@ function Resources(props) {
                     GO TO RESOURCE
                 </a>
             </div>
-        )
+        );
     });
+
     return (
         <div className="resourcePage-content-container">
             <FilterBar 
@@ -151,15 +118,22 @@ function Resources(props) {
             <div className="resources">
                 <h2>{props.resourceType}</h2>
                 <div className="resource-all-cards-container">
-                    {resourceCards}
+                    { resourceCards.length === 0 ?
+                        ("No Results Try another filter!")
+                        :
+                        (resourceCards)
+                    }
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default function ResourcePage(props) {
     const [selectedFilters, setSelectedFilters] = useState([]);
+
+// try to make dynamic tab component to use - not working when trying normal approach
+
     return (
         <div className="resourcePage">
             <Navigation pageTitle={'Resources'} />
@@ -208,5 +182,5 @@ export default function ResourcePage(props) {
             </div>
             <Footer />
         </div>
-    )
-}
+    );
+};

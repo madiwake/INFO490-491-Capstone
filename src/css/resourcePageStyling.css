@@ -133,6 +133,9 @@
     .resources {
         width: 60vw;
     }
+    .resource-card-container {
+        width: 280px;
+    }
 }
 
 @media (min-width: 769px) {
@@ -141,9 +144,6 @@
     }
     .resources {
         width: 75vw;
-    }
-    .resource-card-container {
-        width: 280px;
     }
 }
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import Navigation from './NavigationBar';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
@@ -38,7 +38,11 @@ function FilterBar(props) {
                         onClick={() => {handleFilterSelection('Support Group')}}
                     >
                         Support Group
-                        <img src="/img/plus-icon.png" alt="plus icon"/>
+                        {selectedFilters.includes('Support Group') ? (
+                            <img className="filterBar-option-removeicon" src="/img/remove-icon.png" alt="plus icon"/> 
+                            ) : (
+                            <img className="filterBar-option-plusicon" src="/img/plus-icon.png" alt="X icon"/>
+                        )}
                     </button>
                 </li>
                 <li>
@@ -48,7 +52,11 @@ function FilterBar(props) {
                         onClick={() => {handleFilterSelection('Therapy')}}
                     >
                         Therapy
-                        <img src="/img/plus-icon.png" alt="plus icon"/>
+                        {selectedFilters.includes('Therapy') ? (
+                            <img className="filterBar-option-removeicon" src="/img/remove-icon.png" alt="plus icon"/> 
+                            ) : (
+                            <img className="filterBar-option-plusicon" src="/img/plus-icon.png" alt="X icon"/>
+                        )}
                     </button>
                 </li>
                 <li>
@@ -58,7 +66,11 @@ function FilterBar(props) {
                         onClick={() => {handleFilterSelection('Housing')}}
                     >
                         Housing
-                        <img src="/img/plus-icon.png" alt="plus icon"/>
+                        {selectedFilters.includes('Housing') ? (
+                            <img className="filterBar-option-removeicon" src="/img/remove-icon.png" alt="plus icon"/> 
+                            ) : (
+                            <img className="filterBar-option-plusicon" src="/img/plus-icon.png" alt="X icon"/>
+                        )}
                     </button>
                 </li>
                 <li>
@@ -68,17 +80,25 @@ function FilterBar(props) {
                         onClick={() => {handleFilterSelection('Employment')}}
                     >
                         Employment
-                        <img src="/img/plus-icon.png" alt="plus icon"/>
+                        {selectedFilters.includes('Employment') ? (
+                            <img className="filterBar-option-removeicon" src="/img/remove-icon.png" alt="plus icon"/> 
+                            ) : (
+                            <img className="filterBar-option-plusicon" src="/img/plus-icon.png" alt="X icon"/>
+                        )}
                     </button>
                 </li>
                 <li>
                     <button 
                         type='button' 
                         className="filterBar-option-button"
-                        onClick={() => {handleFilterSelection('Clubs')}}
+                        onClick={() => {handleFilterSelection('Club')}}
                     >
                         Clubs
-                        <img src="/img/plus-icon.png" alt="plus icon"/>
+                        {selectedFilters.includes('Club') ? (
+                            <img className="filterBar-option-removeicon" src="/img/remove-icon.png" alt="plus icon"/> 
+                            ) : (
+                            <img className="filterBar-option-plusicon" src="/img/plus-icon.png" alt="remove icon"/>
+                        )}
                     </button>
                 </li>
             </ul>

@@ -61,7 +61,7 @@
         "name":"PupSupport",
         "description":"Pup Support is a student-led organization with a focus on providing mental health resources to college students creatively. They help break the barriers that college students face with their mental health and ultimately help our community sustain and develop healthy mental health skills.",
         "link":"http://depts.washington.edu/ecc/cultivating-a-culture-of-care-initiative/uw-pup-support/",
-        "tags":["UW","RSO"]
+        "tags":["UW","Club"]
     },
     {
         "image":"img/bestbuddies.png",
@@ -69,7 +69,7 @@
         "name":"Best Buddies",
         "description":"Best Buddies International is an international nonprofit dedicated to establishing a global movement that creates opportunities for one-to-one friendships, integrated employment, leadership development, and inclusive living for individuals with intellectual and developmental disabilities (IDD).",
         "link":"https://careers.uw.edu/organizations/best-buddies/",
-        "tags":["UW","RSO"]
+        "tags":["UW","Club"]
     },
     {
         "image":"img/adlj.png",
@@ -77,7 +77,7 @@
         "name":"Alliance for Disability Law and Justice",
         "description":"The Alliance for Disability Law and Justice (ADLJ) at UW Law advocates for a more inclusive, accessible, and holistic approach to law school from a foundation of anti-racism, intersectionality, and anti-ableism. ",
         "link":"https://depts.washington.edu/dcenter/alliance-for-disability-law-and-justice-adlj/",
-        "tags":["UW","RSO"]
+        "tags":["UW","Club"]
     },
     {
         "image":"img/ability.png",
@@ -85,7 +85,7 @@
         "name":"Ability",
         "description":"Ability's goal is to create disability community and accessibility awareness within the computing community. Our club is open to all UW students, but based in the Allen School for Computer Science & Engineering. The computing community at UW is a tight-knit community.",
         "link":"https://depts.washington.edu/dcenter/ability/",
-        "tags":["UW","RSO"]
+        "tags":["UW","Club"]
     },
     {
         "image":"img/aslclub.png",
@@ -93,7 +93,7 @@
         "name":"UW ASL Club",
         "description":"We bring Deaf, hard-of-hearing, and hearing students together by communicating in sign language, learning about the Deaf culture, and providing support to the Deaf community.",
         "link":"https://depts.washington.edu/dcenter/asl-club/",
-        "tags":["UW","RSO"]
+        "tags":["UW","Club"]
     },
     {
         "image":"img/huskies-for-neurodiversity.png",
@@ -101,7 +101,7 @@
         "name":"Huskies for Neurodiversity",
         "description":"Huskies for Neurodiversity is a student-led initiative that promotes visibility and acceptance of neurodiversity at UW campus and beyond through articles, lived experience interviews with neurodivergent people, interactive website, and panel events.",
         "link":"https://huskylink.washington.edu/engage/organization/huskiesforneurodiversity",
-        "tags":["UW","RSO"]
+        "tags":["UW","Club"]
     },
     {
         "image":"img/sdc.png",
@@ -109,7 +109,7 @@
         "name":"ASUW Student Disability Commission",
         "description":"The SDC is a student-led disability advocacy organization housed under ASUW. The SDC puts on events addressing relevant topics within the Disability community, and advocates on campus for greater access for disabled students.",
         "link":"http://sdc.asuw.org/",
-        "tags":["UW","RSO"]
+        "tags":["UW","Club"]
     },
     {
         "image":"img/autistics-at-uw.png",
@@ -117,7 +117,7 @@
         "name":"Autistics @ UW",
         "description":"We hope to provide a friendly and accessible social space for UW students who are Autistic or questioning if they are Autistic. It is a way for Autistic/questioning students to make friends with others on the spectrum and participate in social events that are designed to be aware of their needs.",
         "link":"https://huskylink.washington.edu/organization/autistics",
-        "tags":["UW","RSO"]
+        "tags":["UW","Club"]
     },
     {
         "image":"img/dasa.png",
@@ -125,7 +125,7 @@
         "name":"DASA - Disability Advocacy Student Alliance",
         "description":"DASA is a student group facilitated for and by students. Our goal is to address the needs and concern of the disability community and its allies on the University of Washington campus regarding the issue of disability. We aim to represent student interest while working with allied student groups, UW administration and the off campus community.",
         "link":"https://depts.washington.edu/dcenter/dasa/",
-        "tags":["UW", "RSO"]
+        "tags":["UW", "Club"]
     },
     {
         "image":"img/do-it.png",
@@ -133,7 +133,7 @@
         "name":"DO-IT - Disabilities, Opportunities, Internetworking, and Technology",
         "description":"The DO-IT (Disabilities, Opportunities, Internetworking, and Technology) Center is dedicated to empowering people with disabilities through technology and education. It promotes awareness and accessibility—in both the classroom and the workplace—to maximize the potential of individuals with disabilities and make our communities more vibrant, diverse, and inclusive.",
         "link":"https://www.washington.edu/doit/",
-        "tags":["UW", "RSO"]
+        "tags":["UW", "Club"]
     },
     {
         "image":"img/husky-adapt.png",
@@ -141,6 +141,6 @@
         "name":"Husky ADAPT - Accessible Design and Play Technology",
         "description":"Husky ADAPT is a student organization at the University of Washington, Seattle campus that is dedicated to supporting accessible design and inclusive play technology. We train the next generation of inclusively-minded engineers, clinicians, and educators to help make the world a more equitable place.",
         "link":"https://www.huskyadapt.me.uw.edu/",
-        "tags":["UW", "RSO"]
+        "tags":["UW", "Club"]
     }
 ]

@@ -5,7 +5,7 @@
         "name":"Quartet Health",
         "description":"Quartet offers personalized care navigation services and connects individuals with mental health providers and resources to improve their overall well-being.",
         "link":"https://www.quartethealth.com/",
-        "tags":["Seattle Resource", "Therapy"]
+        "tags":["Seattle", "Therapy"]
     },
     {
         "image":"img/society-for-neurodiversity.png",
@@ -13,7 +13,7 @@
         "name":"Society for Neurodiversity",
         "description":"S4Nd’s peer support groups are run by and for neurodiverse people. The groups offer members mutual support, guidance and the sharing of information. All S4Nd peer support groups are open to anyone who identifies as neurodiverse.",
         "link":"https://www.s4nd.org/",
-        "tags":["Seattle Resource"]
+        "tags":["Seattle"]
     },
     {
         "image":"img/betterhelp.png",
@@ -21,7 +21,7 @@
         "name":"Better Help",
         "description":"BetterHelp is an online therapy platform that provides accessible mental health services to individuals seeking support for various concerns such as depression, anxiety, relationship issues, etc. Therapy is offered through messaging, live chat, phone calls, and video sessions, allowing users to communicate with licensed therapists at their own pace and convenience.",
         "link":"https://www.betterhelp.com/get-started/?go=true&utm_content=133524759310&utm_source=AdWords&utm_medium=Search_PPC_c&utm_term=betterhelp_b&network=g&placement=&target=&matchtype=b&utm_campaign=15234220559&ad_type=text&adposition=&kwd_id=kwd-299033048821&gad_source=1&gclid=EAIaIQobChMIhef6kcHShAMVRzCtBh2clg5bEAAYASAAEgJJpPD_BwE&not_found=1&gor=start",
-        "tags":["Seattle Resource","Therapy"]
+        "tags":["Seattle","Therapy"]
     },
     {
         "image":"img/meetup.png",
@@ -29,6 +29,6 @@
         "name":"Meetup",
         "description":"Meet other local people interested in neurodiversity and disabilities: share experiences, inspire and encourage each other! Join a neurodiversity and or disability group.",
         "link":"https://www.meetup.com/",
-        "tags":["Seattle Resource"]
+        "tags":["Seattle"]
     }
 ]

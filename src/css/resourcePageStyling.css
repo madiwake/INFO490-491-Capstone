@@ -73,7 +73,9 @@
 
 .resource-all-cards-container {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .resource-card-container {
@@ -81,6 +83,7 @@
     flex-direction: column;
     justify-content: space-between;
     width: 80%;
+    /* height: fit-content; */
     padding: 1.5rem;
     margin: 1rem;
     border-radius: 20px;
@@ -97,11 +100,19 @@
 }
 .resource-card-tags-container {
     padding-left: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 .resource-card-tag {
     list-style: none;
-    
+    background-color: #E4D7FF;
+    border: 1px solid #9566F6;
+    border-radius: 20px;
+    padding: .125rem .5rem;
+    margin: .15rem;
 }
+/* ADD STYLING FOR SPECIFIC TAGS FOR DIFFERENT BACKGROUND AND BORDER COLORS IF WE COLOR CODE */
 .resource-card-button {
     text-decoration: none;
     color: #2F4675;

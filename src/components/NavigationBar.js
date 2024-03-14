@@ -5,7 +5,7 @@ export default function NavigationBar(props) {
     return (
         <header>
             <nav className='navBar'>
-                <h1 className='navBar-logo'>LOGO</h1>
+                <h1 className='navBar-logo'>REACH</h1>
                 <ul className='navBar-menu'>
                     <li className='navBar-menu-item resources-link'>
                         <Link 

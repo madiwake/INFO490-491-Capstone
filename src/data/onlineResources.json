@@ -5,7 +5,7 @@
         "name":"Better Help",
         "description":"BetterHelp is an online therapy platform that provides accessible mental health services to individuals seeking support for various concerns such as depression, anxiety, relationship issues, etc. Therapy is offered through messaging, live chat, phone calls, and video sessions, allowing users to communicate with licensed therapists at their own pace and convenience.",
         "link":"https://www.betterhelp.com/get-started/?go=true&utm_content=133524759310&utm_source=AdWords&utm_medium=Search_PPC_c&utm_term=betterhelp_b&network=g&placement=&target=&matchtype=b&utm_campaign=15234220559&ad_type=text&adposition=&kwd_id=kwd-299033048821&gad_source=1&gclid=EAIaIQobChMIhef6kcHShAMVRzCtBh2clg5bEAAYASAAEgJJpPD_BwE&not_found=1&gor=start",
-        "tags":["Online Resource","Therapy"]
+        "tags":["Online","Therapy"]
     },
     {
         "image":"img/quartet-health.png",
@@ -13,7 +13,7 @@
         "name":"Quartet Health",
         "description":"Quartet offers personalized care navigation services and connects individuals with mental health providers and resources to improve their overall well-being.",
         "link":"https://www.quartethealth.com/",
-        "tags":["Online Resource","Therapy"]
+        "tags":["Online","Therapy"]
     },
     {
         "image":"img/alma.png",
@@ -21,7 +21,7 @@
         "name":"Alma",
         "description":"Alma is a community of independent mental health care providers. While our team helps you navigate the search process, we don’t prescribe the rest. Each provider at Alma sets their own rates and makes their own decisions about going in-network with major insurance payers.",
         "link":"https://secure.helloalma.com/providers-landing/?utm_campaign=19949052412&utm_source=google&utm_medium=paid&utm_content=654402477788&utm_term=e_alma&adgroupid=144736291581&gclid=EAIaIQobChMI55XcqsHShAMVgR-tBh1y9wTWEAAYASAAEgLgq_D_BwE",
-        "tags":["Online Resource","Therapy"]
+        "tags":["Online","Therapy"]
     },
     {
         "image":"img/meetup.png",
@@ -29,7 +29,7 @@
         "name":"Meetup",
         "description":"Meet other local people interested in neurodiversity and disabilities: share experiences, inspire and encourage each other! Join a neurodiversity and or disability group.",
         "link":"https://www.meetup.com/",
-        "tags":["Online Resource"]
+        "tags":["Online"]
     },
     {
         "image":"img/psychology-today.png",
@@ -37,6 +37,6 @@
         "name":"Psychology Today",
         "description":"An online platform that covers a wide range of topics related to psychology, mental health, and well-being. Features articles, blogs, news, and expert insights on various psychological topics, including therapy, relationships, self-improvement, and mental health conditions. Provides directories of therapists, psychiatrists, support groups, and treatment centers to help individuals find mental health resources in the area.",
         "link":"https://www.psychologytoday.com/us/therapists/online-counseling",
-        "tags":["Online Resource"]
+        "tags":["Online"]
     }
 ]

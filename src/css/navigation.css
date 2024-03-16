@@ -1,54 +1,45 @@
-.navBar {
+.navigation-header .navBar {
     display: flex;
     flex-direction: row;
     margin-left: 1rem;
     align-items: center;
     padding-top: .5rem;
 }
-
-.navBar-menu {
+.navigation-header .navBar-menu {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     flex-grow: 1;
 }
-
-.navBar-logo {
+.navigation-header .navBar-logo {
     color: #6C98FC;
 }
-
-.navBar-menu-item {
+.navigation-header .navBar-menu-item {
     list-style-type: none;
     padding: 0 1rem;
 }
-
-.navBar-menu-item-link {
+.navigation-header .navBar-menu-item-link {
     text-decoration: none;
     color: #2F4775;
 }
-
-div.resourcePage li.resources-link .navBar-menu-item-link,
-div.discussionForumPage li.discussionForum-link .navBar-menu-item-link,
-div.FAQPage li.FAQ-link .navBar-menu-item-link {
+div.resourcePage .navigation-header .resources-link .navBar-menu-item-link,
+div.discussionForumPage .navigation-header .discussionForum-link .navBar-menu-item-link,
+div.FAQPage .navigation-header .FAQ-link .navBar-menu-item-link {
     font-weight: bold;
     font-size: 1.125rem;
 }
-
-.navBar-banner-container {
+.navigation-header .navBanner {
     position: relative;
 }
-
-.navBar-banner-img {
+.navigation-header .navBanner-img {
     width: 100%;
     height: auto;
 }
-
-.navBar-banner-overlay-title {
+.navigation-header .navBanner-overlay-title-container {
     position: absolute;
     bottom: -8px;
 }
-
-.navBar-banner-overlay-title h1 {
+.navigation-header .navBanner-overlay-title {
     background-color: #2F4775;
     color: white;
     padding: .25rem 1rem 0 .5rem;
@@ -56,7 +47,7 @@ div.FAQPage li.FAQ-link .navBar-menu-item-link {
 }
 
 @media (min-width:769px) {
-    .navBar-spacer {
+    .navigation-header .navBar-spacer {
         padding: 50px;
     }
 }

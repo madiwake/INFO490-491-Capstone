@@ -1,7 +1,7 @@
 import React, {  useEffect, useState } from "react";
-import Navigation from './NavigationBar';
-import Tab from 'react-bootstrap/Tab';
-import Tabs from 'react-bootstrap/Tabs';
+import Navigation from "./NavigationBar";
+import Tab from "react-bootstrap/Tab";
+import Tabs from "react-bootstrap/Tabs";
 import Footer from "./Footer";
 
 function FilterBar(props) {
@@ -10,7 +10,9 @@ function FilterBar(props) {
 
     const handleFilterSelection = (filterKind) => {
         const addFilter = (filterToAdd) => {
-            setSelectedFilters([...selectedFilters, filterToAdd]);
+            setSelectedFilters(
+                [...selectedFilters, filterToAdd]
+            );
         };
         const removeFilter = (filterToRemove) => {
             setSelectedFilters(
@@ -27,20 +29,24 @@ function FilterBar(props) {
         };
     };
 
-    const FilterOption = ({filterName}) => {
+    const FilterOption = ({filterName, lastButton}) => {
         return (
-            <li>
+            <li className="filterBar-option">
                 <button 
-                    type='button' 
-                    className="filterBar-option-button"
+                    type="button"
+                    className={lastButton ? 
+                        ("filterBar-option-button last-button")
+                         : 
+                        ("filterBar-option-button")
+                    }
                     onClick={() => {handleFilterSelection(filterName)}}
                 >
                     {filterName}
-                    {selectedFilters.includes(filterName) ? (
-                        <img className="filterBar-option-removeicon" src="/img/remove-icon.png" alt="plus icon"/> 
-                        ) : (
-                        <img className="filterBar-option-plusicon" src="/img/plus-icon.png" alt="X icon"/>
-                    )}
+                    {selectedFilters.includes(filterName) ? 
+                        (<img className="filterBar-option-button-removeicon" src="/img/remove-icon.png" alt="plus icon"/> ) 
+                         : 
+                        (<img className="filterBar-option-button-plusicon" src="/img/plus-icon.png" alt="X icon"/>)
+                    }
                 </button>
             </li>
         );
@@ -48,13 +54,18 @@ function FilterBar(props) {
 
     return (
         <div className="filterBar">
-            <h2>Filter</h2>
-            <ul className="filterBar-options">
-                <FilterOption filterName={'Support Group'} />
-                <FilterOption filterName={'Therapy'} />
-                <FilterOption filterName={'Housing'} />
-                <FilterOption filterName={'Employment'} />
-                <FilterOption filterName={'Club'} />
+            <h2 className="filterBar-title">
+                Filter
+            </h2>
+            <ul className="filterBar-allOptions">
+                <FilterOption filterName={"Support Group"} />
+                <FilterOption filterName={"Therapy"} />
+                <FilterOption filterName={"Housing"} />
+                <FilterOption filterName={"Employment"} />
+                <FilterOption 
+                    filterName={"Club"} 
+                    lastButton={true} 
+                />
             </ul>
         </div>
     );
@@ -65,13 +76,17 @@ function Resources(props) {
     const [filteredResourceData, setFilteredResourceData] = useState(resourceData);
 
     useEffect(() => {
-        const includesAll = (resources, currentFilters) => currentFilters.every(filter => resources.includes(filter));
+        const includesAll = (resources, currentFilters) => 
+            currentFilters.every(filter => 
+                resources.includes(filter));
+        
         if (props.selectedFilters.length === 0) {
             setFilteredResourceData(resourceData);
         } else {
             setFilteredResourceData(
-                resourceData.filter((resource) => includesAll(resource.tags, props.selectedFilters)) 
-            )
+                resourceData.filter((resource) => 
+                    includesAll(resource.tags, props.selectedFilters)) 
+            );
         };
     }, [props.selectedFilters, resourceData]);
 
@@ -79,26 +94,56 @@ function Resources(props) {
         const tags = resource.tags.map((tag) => {
             if (tag === "UW" | tag === "Seattle" | tag === "Online" ) {
                 return (
-                    <li key={tag} className={`${tag} resource-card-tag`}>{tag} Resource</li>
+                    <li 
+                        key={tag} 
+                        className={`${tag} resourceCard-tag`}
+                    >
+                        {tag} Resource
+                    </li>
+                );
+            } else if (resource.tags.includes("UW") && tag === "Club") {
+                return (
+                    <li 
+                        key={tag} 
+                        className={`${tag} resourceCard-tag`}
+                    >
+                        RSO
+                    </li>
                 );
             } else {
                 return (
-                    <li key={tag} className={`${tag} resource-card-tag`}>{tag}</li>
+                    <li 
+                        key={tag} 
+                        className={`${tag} resourceCard-tag`}
+                    >
+                        {tag}
+                    </li>
                 );
             };
         });
         return (
-            <div key={resource.name} className="resource-card-container">
+            <div 
+                key={resource.name} 
+                className="resourceCard"
+            >
                 <div>
-                    <h3 className="resource-card-name">{resource.name}</h3>
-                    <img className="resource-card-img" src={resource.image} alt={resource.alt} />
-                    <ul className="resource-card-tags-container">
+                    <h3 className="resourceCard-name">
+                        {resource.name}
+                    </h3>
+                    <img 
+                        className="resourceCard-img" 
+                        src={resource.image} 
+                        alt={resource.alt} 
+                    />
+                    <ul className="resourceCard-tag-container">
                         {tags}
                     </ul>
-                    <p>{resource.description}</p>
+                    <p>
+                        {resource.description}
+                    </p>
                 </div>
                 <a 
-                    className="resource-card-button" 
+                    className="resourceCard-button" 
                     href={resource.link} 
                     target="_blank"
                     rel="noreferrer"
@@ -110,16 +155,18 @@ function Resources(props) {
     });
 
     return (
-        <div className="resourcePage-content-container">
+        <div className="resourceTab-content-container">
             <FilterBar 
                 selectedFilters={props.selectedFilters} 
                 setSelectedFilters={props.setSelectedFilters}
             />
-            <div className="resources">
-                <h2>{props.resourceType}</h2>
-                <div className="resource-all-cards-container">
-                    { resourceCards.length === 0 ?
-                        ("No Results Try another filter!")
+            <div className="resourceTab-content">
+                <h2>
+                    {props.resourceType}
+                </h2>
+                <div className="resourceTab-content-allResourceCards">
+                    {resourceCards.length === 0 ?
+                        ("No current resources. Try another filter!")
                         :
                         (resourceCards)
                     }
@@ -136,16 +183,16 @@ export default function ResourcePage(props) {
 
     return (
         <div className="resourcePage">
-            <Navigation pageTitle={'Resources'} />
-            <div className="resourcePage-body">
+            <Navigation pageTitle={"Resources"} />
+            <div className="body">
                 <Tabs
-                    defaultActiveKey='UW Resources'
-                    className="resource-type-tabs"
+                    defaultActiveKey="UW Resources"
+                    className="body-allResourceTabs"
                 >
                     <Tab 
                         eventKey="UW Resources" 
                         title="UW Resources"
-                        className="resource-option-tab"
+                        className="body-resourceTab"
                     >
                         <Resources 
                             setSelectedFilters={setSelectedFilters} 
@@ -157,7 +204,7 @@ export default function ResourcePage(props) {
                     <Tab 
                         eventKey="Seattle Resources" 
                         title="Seattle Resources"
-                        className="resource-option-tab"
+                        className="body-resourceTab"
                     >
                         <Resources 
                             setSelectedFilters={setSelectedFilters} 
@@ -169,7 +216,7 @@ export default function ResourcePage(props) {
                     <Tab 
                         eventKey="Online Resources" 
                         title="Online Resources"
-                        className="resource-option-tab"
+                        className="body-resourceTab"
                     >
                         <Resources 
                             setSelectedFilters={setSelectedFilters} 

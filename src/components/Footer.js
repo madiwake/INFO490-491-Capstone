@@ -6,17 +6,20 @@ export default function Footer(){
             <div className="contact-container">
                 <small>
                     Contact Us
-                    <img src="/img/email-icon.png" alt="blue envelope icon" />
+                    <img 
+                        src="/img/email-icon.png" 
+                        alt="blue envelope icon" 
+                    />
                 </small>
             </div>
             <div className="bottom-row-footer">
                 <small>
-                    servicedawgs@uw.edu
+                    servicedawgs@uw.edu (not working yet)
                 </small>
                 <small className="copyright">
                     ©ServiceDawgs 2024
                 </small>
             </div>
         </div>
-    )
-}
+    );
+};

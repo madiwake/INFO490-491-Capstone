@@ -38,6 +38,7 @@
     width: 13px;
 }
 
+/* to alter resource page tab nav bar width */
 .resourcePage .body-allResourceTabs {
     justify-content: center;
     margin: 2rem 6rem;

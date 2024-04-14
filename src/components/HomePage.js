@@ -50,11 +50,10 @@ export default function HomePage() {
                 <Carousel 
                     activeIndex={carouselIndex} 
                     onSelect={handleSelect}
-                    interval={null}
                 >
                     <Carousel.Item 
-                        interval={null}
-                        // pause={'hover'}
+                        interval={2000}
+                        pause={'hover'}
                     >
                         <img
                             src='./img/carousel-background.png'
@@ -68,8 +67,8 @@ export default function HomePage() {
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item 
-                        interval={null}
-                        // pause={'hover'}
+                        interval={2000}
+                        pause={'hover'}
                     >
                         <img
                             src='./img/carousel-background.png'
@@ -83,8 +82,8 @@ export default function HomePage() {
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item 
-                        interval={null} 
-                        // pause={'hover'}
+                        interval={2000} 
+                        pause={'hover'}
                     >
                         <img
                             src='./img/carousel-background.png'

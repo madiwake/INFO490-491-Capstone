@@ -11,7 +11,11 @@
     flex-wrap: wrap;
     flex-grow: 1;
 }
-.navigation-header .navBar-logo {
+.navigation-header .navBar-logo-link {
+    text-decoration: none;
+    color: #6C98FC;
+}
+.navigation-header .navBar-logo-link:hover {
     color: #6C98FC;
 }
 .navigation-header .navBar-menu-item {
@@ -22,6 +26,7 @@
     text-decoration: none;
     color: #2F4775;
 }
+div.homePage .navigation-header .home-link .navBar-menu-item-link,
 div.resourcePage .navigation-header .resources-link .navBar-menu-item-link,
 div.discussionForumPage .navigation-header .discussionForum-link .navBar-menu-item-link,
 div.FAQPage .navigation-header .FAQ-link .navBar-menu-item-link {

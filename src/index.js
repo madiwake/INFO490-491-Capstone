@@ -12,6 +12,7 @@ import './css/navigation.css';
 import './css/footer.css';
 import './css/resourcePageStyling.css';
 import './css/faqPageStyling.css';
+import './css/homePageStyling.css'
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

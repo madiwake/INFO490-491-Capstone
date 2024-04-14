@@ -1,0 +1,90 @@
+.homePage .body-title {
+    padding: 1.5rem 1rem;
+}
+
+.homePage .whatIsREACH {
+    padding: 0 3rem;
+}
+.homePage h2.whatIsREACH-question {
+    margin-bottom: 1rem;
+    font-family: "Raleway", sans-serif;
+    font-weight: bold;
+}
+.homePage h3.whatIsREACH-answer {
+    font-family: "Raleway", sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.homePage .body-missionStatement-container {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 1.5rem 3rem;
+}
+.homePage .body-missionStatement-picture {
+    width: 100%;
+    object-fit: contain;
+}
+.homePage .body-missionStatement-text {
+    margin-right: .75rem;
+}
+.homePage .body-missionStatement-text-paragraph {
+    line-height: 1.2;
+}
+.homePage .body-missionStatement-text-buttetPoints li{
+    list-style: circle;
+}
+
+.homePage .body-carouselTitle {
+    margin: 2rem 0;
+    padding: 0 3rem;
+    font-family: "Raleway", sans-serif;
+    font-weight: bold;
+}
+.homePage .carousel-text {
+    bottom: 30%;
+}
+.homePage .carousel-text h3, .homePage .carousel-text p {
+    color: #2F4775;
+    margin: 2rem;
+}
+
+.homePage .carousel-control-next,
+.homePage .carousel-control-prev {
+    opacity: 1;
+}
+.homePage .carousel-control-next-icon {
+    background-image: url('../../public/img/carousel-forward-icon.png');
+}
+.homePage .carousel-control-prev-icon {
+    background-image: url('../../public/img/carousel-backward-icon.png');
+}
+.homePage .carousel-indicators [data-bs-target] {
+    width: 15px;
+    height: 15px;
+    border: 1px solid #2F4775;
+    border-radius: 25px;
+    opacity: 1;
+    margin: 0 .75rem;
+}
+.carousel-indicators .active {
+    background-color: #2F4775;
+}
+
+@media (min-width: 576px) {
+    
+}
+
+@media (min-width: 768px) {
+    .homePage .body-missionStatement-container {
+        flex-direction: row;
+    }
+    .homePage .body-missionStatement-picture {
+        width: 65%;
+        margin-left: 1rem;
+    }
+}
+
+@media (min-width: 992px) {
+}

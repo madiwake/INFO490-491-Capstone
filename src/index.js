@@ -14,30 +14,6 @@ import './css/resourcePageStyling.css';
 import './css/faqPageStyling.css';
 import './css/homePageStyling.css'
 
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-// import firebase from 'firebase/app';
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyBCyeszyxNKm7leFdFD9Q-3CqhEGbMyX88",
-  authDomain: "reach-informatics-capstone.firebaseapp.com",
-  projectId: "reach-informatics-capstone",
-  storageBucket: "reach-informatics-capstone.appspot.com",
-  messagingSenderId: "42815108660",
-  appId: "1:42815108660:web:105b47c94b83fd9e207c61",
-  measurementId: "G-SXW8XSNVV1"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-// firebase.initializeApp(firebaseConfig);
-
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

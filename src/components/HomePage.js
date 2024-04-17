@@ -1,13 +1,84 @@
 import React, { useState } from "react";
 import NavigationBar from "./NavigationBar";
 import Carousel from 'react-bootstrap/Carousel';
+import Footer from './Footer';
 
-export default function HomePage() {
+function PageCarousel() {
     const [carouselIndex, setCarouselIndex] = useState(0);
 
     const handleSelect = (selectedIndex) => {
         setCarouselIndex(selectedIndex);
     };
+    return (
+        <Carousel 
+            activeIndex={carouselIndex} 
+            onSelect={handleSelect}
+        >
+            <Carousel.Item 
+                interval={2000}
+                pause={'hover'}
+            >
+                <img
+                    src='./img/carousel-background.png'
+                    alt='light blue carousel background'
+                />
+                <Carousel.Caption className="carousel-text">
+                    <h3>RESOURCE HUB</h3>
+                    <p>
+                        The resource page allows you to easily connect with varying resources that fit your personalized needs. You can search and filter through on-campus, Seattle, and online resources to connect with resources when and where you need them. 
+                    </p>
+                </Carousel.Caption>
+            </Carousel.Item>
+            <Carousel.Item 
+                interval={2000}
+                pause={'hover'}
+            >
+                <img
+                    src='./img/carousel-background.png'
+                    alt='light blue carousel background'
+                />
+                <Carousel.Caption className="carousel-text">
+                    <h3>COMMUNITY DISCUSSION</h3>
+                    <p>
+                        The discussion page allows you to connect and chat with other students about shared inquiries. You are able to read others' posts, post your own questions, reply, and upvote. You can also browse through our designated pages for advice, socializing, venting and questions.
+                    </p>
+                </Carousel.Caption>
+            </Carousel.Item>
+            <Carousel.Item 
+                interval={2000} 
+                pause={'hover'}
+            >
+                <img
+                    src='./img/carousel-background.png'
+                    alt='light blue carousel background'
+                />
+                <Carousel.Caption className="carousel-text">
+                    <h3>HOW-TO</h3>
+                    <p>
+                        The How-To page allows you to look at common processes, issues, and questions that other students with disabilities have struggled with to discover digestible guides and answers for how to navigate these situations. 
+                    </p>
+                </Carousel.Caption>
+            </Carousel.Item>
+            <Carousel.Item 
+                interval={2000} 
+                pause={'hover'}
+            >
+                <img
+                    src='./img/carousel-background.png'
+                    alt='light blue carousel background'
+                />
+                <Carousel.Caption className="carousel-text">
+                    <h3>SIGN IN TO CONNECT</h3>
+                    <p>
+                        By creating an account and signing in to REACH you can connect with other students with disabilities to find solidarity and support through other students' shared experiences, opinions, questions, and comments.
+                    </p>
+                </Carousel.Caption>
+            </Carousel.Item>
+        </Carousel>
+    )
+}
+
+export default function HomePage() {
 
     return(
         <div className="homePage">
@@ -16,30 +87,27 @@ export default function HomePage() {
                 <h1 className="body-title">
                     Welcome to REACH
                 </h1>
-                <div className="whatIsREACH">
-                    <h2 className="whatIsREACH-question">
-                        What is REACH?
-                    </h2>
-                    <h3 className="whatIsREACH-answer">
-                        REACH stands for Resource, Education, Accessibility, and Community Hub.
-                    </h3>
-                </div>
                 <div className="body-missionStatement-container">
-                    <div className="body-missionStatement-text">
-                        <p className="body-missionStatement-text-paragraph">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                        <ul className="body-missionStatement-text-buttetPoints">
-                            <li>
-                                mission statement
-                            </li>
-                            <li>
-                                talk about how the project started, our motivations, who we are? (kinda like an about page)
-                            </li>
-                        </ul>
+                    <div className="body-missionStatement-text-container">
+                        <div className="body-missionStatement-text-whatIsREACH">
+                            <h2 className="body-missionStatement-text-whatIsREACH-question">
+                                What is REACH?
+                            </h2>
+                            <p className="body-missionStatement-text-whatIsREACH-answer">
+                                REACH stands for Resource, Education, Accessibility, and Community Hub.
+                            </p>
+                        </div>
+                        <div className="body-missionStatement-text">
+                            <h3>
+                                OUR MISSION
+                            </h3>
+                            <p className="body-missionStatement-text-paragraph">
+                                At REACH, our mission is to empower students with disabilities by providing an online platform where they can easily discover a supportive community and access essential resources tailored to their unique needs. We strive to foster an inclusive environment that allows students to grow and succeed in higher education so that every student can flourish in college and beyond.
+                            </p>
+                        </div>
                     </div>
                     <img 
-                        src='./img/homePagePicPlaceholder.png'
+                        src='./img/homePage-picture.png'
                         className="body-missionStatement-picture"
                         alt="placeholder"
                     />
@@ -47,57 +115,15 @@ export default function HomePage() {
                 <h2 className="body-carouselTitle">
                     What Can You Do With REACH?
                 </h2>
-                <Carousel 
-                    activeIndex={carouselIndex} 
-                    onSelect={handleSelect}
-                >
-                    <Carousel.Item 
-                        interval={2000}
-                        pause={'hover'}
-                    >
-                        <img
-                            src='./img/carousel-background.png'
-                            alt='light blue carousel background'
-                        />
-                        <Carousel.Caption className="carousel-text">
-                            <h3>RESOURCE HUB</h3>
-                            <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                            </p>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                    <Carousel.Item 
-                        interval={2000}
-                        pause={'hover'}
-                    >
-                        <img
-                            src='./img/carousel-background.png'
-                            alt='light blue carousel background'
-                        />
-                        <Carousel.Caption className="carousel-text">
-                            <h3>DISCUSSION FORUM</h3>
-                            <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                            </p>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                    <Carousel.Item 
-                        interval={2000} 
-                        pause={'hover'}
-                    >
-                        <img
-                            src='./img/carousel-background.png'
-                            alt='light blue carousel background'
-                        />
-                        <Carousel.Caption className="carousel-text">
-                            <h3>FREQUENTLY ASKED QUESTIONS</h3>
-                            <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                            </p>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                </Carousel>
+                <PageCarousel />
+                <div className="body-project-context">
+                    <h2>OUR PROJECT</h2>
+                    <p>
+                        We are a team of five undergraduate Informatics students at the University of Washington - Seattle. Upon our group formation, we discovered a shared passion for developing technologies which create equitable support for marginalized communities. Getting to know each other, we realized many people on our team have personal connections to Disability Resources for Students (DRS) whether than be through friends, family, or ourselves. We observed an absence of holistic resources that considered aspects of a students' lives outside of in-class room aid. We also observed a lack of social connectedness between students with disabilities at the UW. We were driven to design and develop a web application that addressed the inequities we saw among students.
+                    </p>
+                </div>
             </div>
+            <Footer />
         </div>
     )
 }

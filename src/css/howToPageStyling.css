@@ -1,21 +1,21 @@
-.FAQPAge .body {
+.howToPAge .body {
     display: flex;
     justify-content: center;
 }
 
-.FAQPage .body-description {
-    margin: 1rem 5rem 3rem 5rem;
+.howToPage .body-description {
+    margin: 1.5rem 5rem;
     text-align: center;
 }
 
-.FAQPage .body-allFAQCards {
+.howToPage .body-allhowToCards {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-.FAQPage .FAQCard {
+.howToPage .howToCard {
     display: flex;
     flex-direction: column;
     width: 80%;
@@ -26,16 +26,16 @@
     box-shadow: 8px 8px 20px 5px rgba(0, 0, 0, 0.25);
 }
 
-.FAQPage .FAQCard-question-container {
+.howToPage .howToCard-question-container {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
-.FAQPage .FAQCard-question {
+.howToPage .howToCard-question {
     font-weight: bold;
 }
-.FAQPage .FAQCard-question-icon {
+.howToPage .howToCard-question-icon {
     width: 30px;
     height: 30px;
     margin-right: 1rem;
@@ -43,33 +43,33 @@
 
 
 @media (min-width: 576px) {
-    .FAQPage .body-description {
-        margin: 1rem 10rem 3rem 10rem;
+    .howToPage .body-description {
+        margin: 1.5rem 10rem;
     }
 
-    .FAQPage .FAQCard {
+    .howToPage .howToCard {
         padding: 3rem;
     }
 }
 
 @media (min-width: 768px) {
-    .FAQPage .body-description {
-        margin: 1rem 15rem 3rem 15rem;
+    .howToPage .body-description {
+        margin: 1.5rem 15rem;
     }
 
-    .FAQPage .FAQCard {
+    .howToPage .howToCard {
         width: 40%;
     }
 }
 
 @media (min-width: 992px) {
-    .FAQPage .body-description {
-        margin: 1rem 20rem 3rem 20rem;
+    .howToPage .body-description {
+        margin: 1.5rem 20rem;
     }
 }
 
 @media (min-width: 1200px) {
-    .FAQPage .body-description {
-        margin: 1rem 25rem 3rem 25rem;
+    .howToPage .body-description {
+        margin: 1.5rem 25rem;
     }
 }

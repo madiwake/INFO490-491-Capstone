@@ -69,10 +69,10 @@ export default function NavigationBar(props) {
                     </li>
                     <li className="navBar-menu-item FAQ-link">
                         <Link 
-                            to="/FAQ" 
+                            to="/how-to" 
                             className="navBar-menu-item-link"
                         >
-                            FAQ
+                            How-to
                         </Link>
                     </li>
                 </ul>

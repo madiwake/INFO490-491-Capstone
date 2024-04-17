@@ -72,7 +72,7 @@ const DiscussionForumPage = () => {
   };
 
   return (
-    <div>
+    <div className="discussionForumPage">
       <Navigation pageTitle={'Discussion'} />
       <div>
         {!showCreatePost && (

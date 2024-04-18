@@ -17,6 +17,7 @@ function PageCarousel() {
             <Carousel.Item 
                 interval={2000}
                 pause={'hover'}
+                className="carousel-slide"
             >
                 <img
                     src='./img/carousel-background.png'
@@ -32,6 +33,7 @@ function PageCarousel() {
             <Carousel.Item 
                 interval={2000}
                 pause={'hover'}
+                className="carousel-slide"
             >
                 <img
                     src='./img/carousel-background.png'
@@ -47,6 +49,7 @@ function PageCarousel() {
             <Carousel.Item 
                 interval={2000} 
                 pause={'hover'}
+                className="carousel-slide"
             >
                 <img
                     src='./img/carousel-background.png'
@@ -62,6 +65,7 @@ function PageCarousel() {
             <Carousel.Item 
                 interval={2000} 
                 pause={'hover'}
+                className="carousel-slide"
             >
                 <img
                     src='./img/carousel-background.png'

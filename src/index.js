@@ -13,6 +13,7 @@ import './css/footer.css';
 import './css/resourcePageStyling.css';
 import './css/howToPageStyling.css';
 import './css/homePageStyling.css';
+import './css/forumPageStyling.css';
 
 
 // Import the functions you need from the SDKs you need

@@ -1,0 +1,110 @@
+.forumPage .body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 1rem;
+    min-height: 51vh;
+    flex-grow: 1;
+}
+  
+.forumPage .body > * {
+    margin-bottom: 1rem;
+}
+  
+.forumPage .body > div > button {
+    font-size: 1.25rem;
+}
+  
+.forumPage .body input[type="text"],
+.forumPage .body form textarea {
+    width: 30rem;
+    max-width: 30rem;
+}
+  
+.forumPage .body .allforumCards {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+  
+.forumPage .forumCard {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 75rem;
+    max-width: 80rem;
+    padding: 1.5rem;
+    margin: 1.25rem 0;
+    border-radius: 20px;
+    box-shadow: 8px 8px 20px 5px rgba(0, 0, 0, 0.25);
+}
+  
+.forumPage .textSection {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-grow: 1;
+}
+  
+.forumPage .forumCard button {
+    background-color: #2F4775;
+    color: white;
+    border: none;
+    border-radius: 1.5rem;
+    padding: 0.75rem 1.5rem;
+    margin: 0.25rem;
+    cursor: pointer;
+    align-self: flex-end;
+}
+  
+.forumPage .forumCard .buttonGroup {
+    display: flex;
+    justify-content: flex-end; 
+    width: 100%;
+}
+  
+.forumPage .input form {
+    padding-top: 0.25rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+  
+.forumPage .input form input[type="text"],
+.forumPage .input form textarea {
+    margin-bottom: 0.5rem;
+}
+  
+.forumPage .body button,
+.forumPage .input-container button {
+    background-color: #2F4775;
+    color: white;
+    border: none;
+    border-radius: 1.5rem;
+    padding: 0.75rem 1.5rem;
+    margin: 0.25rem;
+    cursor: pointer;
+    align-self: center;
+}
+
+.forumPage .tagButtons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+  
+.forumPage .tagButtons button {
+    background-color: #FFC3A1;
+    color: #2F4775;
+    border: none;
+    border-radius: 0.75rem;
+    padding: 0.35rem 0.85rem;
+    margin: 0 0.5rem;
+    cursor: pointer;
+}
+  

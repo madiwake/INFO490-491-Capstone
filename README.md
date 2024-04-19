@@ -41,7 +41,7 @@ In order to run the codebase, npm install command is necessary to install releva
 
 Grace and Emily talk about firebase and server needs?
 
-#### "What to work on" and Fturue Ideas and Intentions for REACH
+#### "What to work on" and Future Ideas and Intentions for REACH
 The following ideas are intended to be used an inspiration for future development of REACH. If our team had more time, these would be things we would do to continue working on the project!
 Future Functionality Ideas
 1. Accessibility Settings

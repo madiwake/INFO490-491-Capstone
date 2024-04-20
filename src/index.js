@@ -6,7 +6,7 @@ import ONLINERESOURCES from './data/onlineResources.json';
 import SEATTLERESOURCES from './data/seattleResources.json';
 import UWRESOURCES from './data/uwResources.json';
 import HOWTOQUESTIONS from './data/howToQuestions.json';
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/index.css';
 import './css/navigation.css';
 import './css/footer.css';

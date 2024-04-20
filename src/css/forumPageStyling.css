@@ -1,13 +1,17 @@
 .forumPage .body {
+    padding-top: .5rem;
+    min-height: 51vh; /* what does this do? */
+    flex-grow: 1;
+    margin: 0 15vw;
+}
+  
+.forumPage .body-search-and-category-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding-top: 1rem;
-    min-height: 51vh;
-    flex-grow: 1;
 }
-  
+
 .forumPage .body > * {
     margin-bottom: 1rem;
 }
@@ -16,9 +20,9 @@
     font-size: 1.25rem;
 }
   
-.forumPage .body input[type="text"],
+.forumPage .body .input input[type="text"],
 .forumPage .body form textarea {
-    width: 30rem;
+    width: 60vw;
     max-width: 30rem;
 }
   
@@ -80,7 +84,7 @@
     margin-bottom: 0.5rem;
 }
   
-.forumPage .body button,
+/* .forumPage .body button, */
 .forumPage .input-container button {
     background-color: #2F4775;
     color: white;
@@ -96,15 +100,55 @@
     display: flex;
     justify-content: center;
     margin-bottom: 1rem;
+    flex-wrap: wrap;
 }
-  
-.forumPage .tagButtons button {
-    background-color: #FFC3A1;
-    color: #2F4775;
+
+.forumPage .body-searchBar {
+    padding: .5rem .25rem;
+    background-image: url("../../public/img/search-icon.png");
+    background-repeat: no-repeat;
+    background-position: 20px;
+    background-size: 15px;
+    padding-left: 45px;
+    border-radius: 25px;
+    border: 1px solid #6C98FC;
+    margin-bottom: 2rem;
+    width: 70vw;
+}
+
+.forumPage .singleTagButton {
+    background-color: transparent;
     border: none;
-    border-radius: 0.75rem;
-    padding: 0.35rem 0.85rem;
-    margin: 0 0.5rem;
-    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 .75rem;
 }
-  
+
+.forumPage .singleTagButton img {
+    width: 60px;
+    height: 60px;
+}
+
+.forumPage .singleTagButton p {
+    font-size: 1rem;
+}
+
+.forumPage .body h2 {
+    font-family: "Raleway", sans-serif;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+.forumPage .body h3 {
+    font-family: "Raleway", sans-serif;
+    font-weight: 600;
+}
+
+.forumPage .create-post-button {
+    background-color: transparent;
+    border: 2px solid #2F4775;
+    border-radius: 25px;
+    padding: .25rem .5rem;
+}

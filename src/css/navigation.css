@@ -28,7 +28,7 @@
 }
 div.homePage .navigation-header .home-link .navBar-menu-item-link,
 div.resourcePage .navigation-header .resources-link .navBar-menu-item-link,
-div.discussionForumPage .navigation-header .discussionForum-link .navBar-menu-item-link,
+div.forumPage .navigation-header .discussionForum-link .navBar-menu-item-link,
 div.howToPage .navigation-header .FAQ-link .navBar-menu-item-link {
     font-weight: bold;
     font-size: 1.125rem;

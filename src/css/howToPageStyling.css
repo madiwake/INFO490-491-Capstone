@@ -7,13 +7,6 @@
     text-align: center;
 }
 
-/* .howToPage .body-allhowToCards {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-} */
-
 .howToPage .howToCard {
     display: flex;
     flex-direction: column;

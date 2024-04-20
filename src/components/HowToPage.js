@@ -1,6 +1,7 @@
 import React from "react";
 import Navigation from './NavigationBar';
 import Footer from "./Footer";
+import Masonry, {ResponsiveMasonry} from "react-responsive-masonry";
 
 export default function HowToPage(props) {
     const howToCards = props.howToQuestions.map((question) => {
@@ -38,7 +39,15 @@ export default function HowToPage(props) {
                     Take a look at common processes, issues, and questions that other students with disabilities have struggled with to discover digestible guides and answers for how to navigate these situations.
                 </p>
                 <div className="body-allhowToCards">
-                    {howToCards}
+                    <ResponsiveMasonry 
+                        columnsCountBreakPoints={{100: 1, 768: 2}}
+                    >
+                        <Masonry
+                            className="masonry-container"
+                        >
+                            {howToCards}
+                        </Masonry>
+                    </ResponsiveMasonry>
                 </div>
             </div>
             <Footer />

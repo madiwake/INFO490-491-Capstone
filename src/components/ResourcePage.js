@@ -2,6 +2,8 @@ import React, {  useEffect, useState } from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import Footer from "./Footer";
+import NavigationBar from './NavigationBar';
+import { useAuthState } from "react-firebase-hooks/auth";
 
 function FilterBar(props) {
     const setSelectedFilters = props.setSelectedFilters;
@@ -176,12 +178,15 @@ function Resources(props) {
 };
 
 export default function ResourcePage(props) {
+    const [user] = useAuthState(props.auth);
+
     const [selectedFilters, setSelectedFilters] = useState([]);
 
 // try to make dynamic tab component to use - not working when trying normal approach
 
     return (
         <div className="resourcePage">
+            <NavigationBar auth={props.auth} pageTitle={"Resources"} user={user} />
             <div className="body">
                 <Tabs
                     defaultActiveKey="UW Resources"

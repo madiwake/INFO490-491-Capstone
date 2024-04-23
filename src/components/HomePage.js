@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Carousel from 'react-bootstrap/Carousel';
 import Footer from './Footer';
+import NavigationBar from './NavigationBar';
+import { useAuthState } from "react-firebase-hooks/auth";
 
 function PageCarousel() {
     const [carouselIndex, setCarouselIndex] = useState(0);
@@ -81,10 +83,12 @@ function PageCarousel() {
     )
 }
 
-export default function HomePage() {
+export default function HomePage(props) {
+    const [user] = useAuthState(props.auth);
 
     return(
         <div className="homePage">
+            <NavigationBar auth={props.auth} pageTitle={'Home'} user={user} />
             <div className="body">
                 <h1 className="body-title">
                     Welcome to REACH

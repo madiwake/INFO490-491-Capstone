@@ -3,30 +3,30 @@ import { NavLink } from "react-router-dom";
 import { signInWithRedirect, signOut, GoogleAuthProvider } from "firebase/auth";
 
 function NavBanner(props) {
-    if(props.pageTitle === 'Home') {
+    if (props.pageTitle === 'Home') {
         return (
             <div className="navBanner">
-                <img 
-                    className="navBanner-img" 
+                <img
+                    className="navBanner-img"
                     src="/img/page-banner.jpeg"
-                    alt="light purple banner snapping the entirety of the window. banner includes a simple graphic cityscape of seattle in the center" 
+                    alt="light purple banner snapping the entirety of the window. banner includes a simple graphic cityscape of seattle in the center"
                 />
             </div>
         )
     } else {
         return (
             <div className="navBanner">
-                <img 
-                    className="navBanner-img" 
+                <img
+                    className="navBanner-img"
                     src="/img/page-banner.jpeg"
-                    alt="light purple banner snapping the entirety of the window. banner includes a simple graphic cityscape of seattle in the center" 
+                    alt="light purple banner snapping the entirety of the window. banner includes a simple graphic cityscape of seattle in the center"
                 />
                 <div className="navBanner-overlay-title-container">
                     <h1 className="navBanner-overlay-title">
                         {props.pageTitle}
                     </h1>
                 </div>
-            </div> 
+            </div>
         )
     }
 }

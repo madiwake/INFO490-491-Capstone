@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Footer from "./Footer";
+import NavigationBar from './NavigationBar';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc, query, where, getDocs as getSubcollectionDocs } from "firebase/firestore";
 
-const DiscussionForumPage = ({ auth, firestore }) => {
-  const [user] = useAuthState(auth);
+const DiscussionForumPage = (props) => {
+  const [user] = useAuthState(props.auth);
   const [posts, setPosts] = useState([]);
   const [showCreatePost, setShowCreatePost] = useState(false);
   const [searchInput, setSearchInput] = useState("");
@@ -24,12 +25,12 @@ const DiscussionForumPage = ({ auth, firestore }) => {
 
   const fetchData = async () => {
     try {
-      const postsQuerySnapshot = await getDocs(collection(firestore, 'forumposts'));
+      const postsQuerySnapshot = await getDocs(collection(props.firestore, 'forumposts'));
       const fetchedPosts = [];
 
       for (const postDoc of postsQuerySnapshot.docs) {
         const postData = postDoc.data();
-        const repliesQuerySnapshot = await getSubcollectionDocs(query(collection(firestore, 'forumposts', postDoc.id, 'replies')));
+        const repliesQuerySnapshot = await getSubcollectionDocs(query(collection(props.firestore, 'forumposts', postDoc.id, 'replies')));
 
         const replies = [];
         repliesQuerySnapshot.forEach(replyDoc => {
@@ -76,7 +77,7 @@ const DiscussionForumPage = ({ auth, firestore }) => {
     const timestamp = Date.now();
   
     try {
-      const docRef = await addDoc(collection(firestore, 'forumposts'), {
+      const docRef = await addDoc(collection(props.firestore, 'forumposts'), {
         title,
         content,
         category,
@@ -107,7 +108,7 @@ const DiscussionForumPage = ({ auth, firestore }) => {
 
   const handleLike = async (postId) => {
     try {
-      const postRef = doc(firestore, 'forumposts', postId);
+      const postRef = doc(props.firestore, 'forumposts', postId);
       const postIndex = posts.findIndex(post => post.id === postId);
       const alreadyLiked = posts[postIndex].likedByUser;
   
@@ -115,7 +116,7 @@ const DiscussionForumPage = ({ auth, firestore }) => {
         await updateDoc(postRef, {
           likes: posts[postIndex].likes + 1
         });
-        await addDoc(collection(firestore, 'likes'), { userId: user.uid, postId });
+        await addDoc(collection(props.firestore, 'likes'), { userId: user.uid, postId });
         setPosts(prevPosts => {
           const updatedPosts = [...prevPosts];
           updatedPosts[postIndex].likes++;
@@ -129,9 +130,9 @@ const DiscussionForumPage = ({ auth, firestore }) => {
           likes: posts[postIndex].likes - 1
         });
         // Remove like from database
-        const likesQuerySnapshot = await getDocs(query(collection(firestore, 'likes'), where("userId", "==", user.uid), where("postId", "==", postId)));
+        const likesQuerySnapshot = await getDocs(query(collection(props.firestore, 'likes'), where("userId", "==", user.uid), where("postId", "==", postId)));
         likesQuerySnapshot.forEach(async (likeDoc) => {
-          await deleteDoc(doc(firestore, 'likes', likeDoc.id));
+          await deleteDoc(doc(props.firestore, 'likes', likeDoc.id));
         });
         // Update local state
         setPosts(prevPosts => {
@@ -149,7 +150,7 @@ const DiscussionForumPage = ({ auth, firestore }) => {
   
   const handleReply = async (postId, replyContent, index) => {
     try {
-      const postRef = doc(firestore, 'forumposts', postId);
+      const postRef = doc(props.firestore, 'forumposts', postId);
       const timestamp = Date.now();
       const newReply = { reply: replyContent, timestamp }; // Create new reply object
       const replyDocRef = await addDoc(collection(postRef, 'replies'), newReply); // Add reply to Firestore
@@ -190,6 +191,7 @@ const DiscussionForumPage = ({ auth, firestore }) => {
 
   return (
     <div className="forumPage">
+      <NavigationBar auth={props.auth} pageTitle={'Discussion'} user={user} />
       <div className="body">
         <div className="body-search-and-category-container">
           <h2>CATEGORIES</h2>

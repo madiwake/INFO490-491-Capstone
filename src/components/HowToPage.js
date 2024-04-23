@@ -1,5 +1,4 @@
 import React from "react";
-import Navigation from './NavigationBar';
 import Footer from "./Footer";
 import Masonry, {ResponsiveMasonry} from "react-responsive-masonry";
 
@@ -33,7 +32,6 @@ export default function HowToPage(props) {
 
     return (
         <div className="howToPage">
-            <Navigation pageTitle={'HOW-TO'} />
             <div className="body">
                 <p className="body-description">
                     Take a look at common processes, issues, and questions that other students with disabilities have struggled with to discover digestible guides and answers for how to navigate these situations.

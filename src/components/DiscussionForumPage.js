@@ -1,37 +1,172 @@
-import React, { useState } from "react";
-import Navigation from './NavigationBar';
+import React, { useState, useEffect } from "react";
 import Footer from "./Footer";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc, query, where, getDocs as getSubcollectionDocs } from "firebase/firestore";
 
-const DiscussionForumPage = () => {
+const DiscussionForumPage = ({ auth, firestore }) => {
+  const [user] = useAuthState(auth);
   const [posts, setPosts] = useState([]);
   const [showCreatePost, setShowCreatePost] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const [currentCategory, setCurrentCategory] = useState("All");
+  const [replyContent, setReplyContent] = useState(""); // Initialize reply content state
+  const [likedPosts, setLikedPosts] = useState([]); // Store liked posts for the current user
+
+  useEffect(() => {
+    fetchData();
+    fetchLikedPosts(); // Fetch liked posts for the current user
+  }, []);
+
+  useEffect(() => {
+    // Save liked posts to localStorage whenever the likedPosts state changes
+    localStorage.setItem("likedPosts", JSON.stringify(likedPosts));
+  }, [likedPosts]);
+
+  const fetchData = async () => {
+    try {
+      const postsQuerySnapshot = await getDocs(collection(firestore, 'forumposts'));
+      const fetchedPosts = [];
+
+      for (const postDoc of postsQuerySnapshot.docs) {
+        const postData = postDoc.data();
+        const repliesQuerySnapshot = await getSubcollectionDocs(query(collection(firestore, 'forumposts', postDoc.id, 'replies')));
+
+        const replies = [];
+        repliesQuerySnapshot.forEach(replyDoc => {
+          replies.push({ id: replyDoc.id, ...replyDoc.data() });
+        });
+
+        fetchedPosts.push({
+          id: postDoc.id,
+          ...postData,
+          likedByUser: likedPosts.includes(postDoc.id), // Check if the post is liked by the user
+          showReplyBox: false,
+          showReplies: false,
+          replies: replies
+        });
+      }
+
+      setPosts(fetchedPosts);
+    } catch (error) {
+      console.error("Error fetching documents: ", error);
+    }
+  };  
+
+  const fetchLikedPosts = async () => {
+    try {
+      const likedPosts = localStorage.getItem("likedPosts");
+      if (likedPosts) {
+        setLikedPosts(JSON.parse(likedPosts));
+      }
+    } catch (error) {
+      console.error("Error fetching liked posts: ", error);
+    }
+  };
 
   const formatTimestamp = (timestamp) => {
     const date = new Date(timestamp);
     return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const title = e.target.title.value;
     const content = e.target.content.value;
+    const category = e.target.category.value;
     const timestamp = Date.now();
-    const newPost = { title, content, replies: [], showReplyBox: false, showReplies: false, voted: null, upvotes: 0, downvotes: 0, timestamp };
-    setPosts(prevPosts => [...prevPosts, newPost]);
-    e.target.reset();
-    setShowCreatePost(false);
+  
+    try {
+      const docRef = await addDoc(collection(firestore, 'forumposts'), {
+        title,
+        content,
+        category,
+        timestamp,
+        userId: user?.uid,
+        likes: 0 // Initialize likes count
+      });
+
+      const newPost = {
+        id: docRef.id,
+        title,
+        content,
+        category,
+        timestamp,
+        userId: user?.uid,
+        likes: 0, // Initialize likes count
+        likedByUser: false // Initialize likedByUser field
+      };
+
+      setPosts(prevPosts => [...prevPosts, newPost]);
+
+      e.target.reset();
+      setShowCreatePost(false);
+    } catch (error) {
+      console.error("Error adding document: ", error);
+    }
+  };
+
+  const handleLike = async (postId) => {
+    try {
+      const postRef = doc(firestore, 'forumposts', postId);
+      const postIndex = posts.findIndex(post => post.id === postId);
+      const alreadyLiked = posts[postIndex].likedByUser;
+  
+      if (!alreadyLiked) {
+        await updateDoc(postRef, {
+          likes: posts[postIndex].likes + 1
+        });
+        await addDoc(collection(firestore, 'likes'), { userId: user.uid, postId });
+        setPosts(prevPosts => {
+          const updatedPosts = [...prevPosts];
+          updatedPosts[postIndex].likes++;
+          updatedPosts[postIndex].likedByUser = true;
+          return updatedPosts;
+        });
+        setLikedPosts(prevLikedPosts => [...prevLikedPosts, postId]); // Add postId to likedPosts state
+      } else {
+        // Unlike the post
+        await updateDoc(postRef, {
+          likes: posts[postIndex].likes - 1
+        });
+        // Remove like from database
+        const likesQuerySnapshot = await getDocs(query(collection(firestore, 'likes'), where("userId", "==", user.uid), where("postId", "==", postId)));
+        likesQuerySnapshot.forEach(async (likeDoc) => {
+          await deleteDoc(doc(firestore, 'likes', likeDoc.id));
+        });
+        // Update local state
+        setPosts(prevPosts => {
+          const updatedPosts = [...prevPosts];
+          updatedPosts[postIndex].likes--;
+          updatedPosts[postIndex].likedByUser = false;
+          return updatedPosts;
+        });
+        setLikedPosts(prevLikedPosts => prevLikedPosts.filter(id => id !== postId)); // Remove postId from likedPosts state
+      }
+    } catch (error) {
+      console.error("Error updating likes: ", error);
+    }
   };
   
-  const handleReply = (index, reply) => {
-    setPosts(prevPosts => {
-      const updatedPosts = [...prevPosts];
+  const handleReply = async (postId, replyContent, index) => {
+    try {
+      const postRef = doc(firestore, 'forumposts', postId);
       const timestamp = Date.now();
-      updatedPosts[index].replies.push({ reply, timestamp });
-      return updatedPosts;
-    });
-  };
+      const newReply = { reply: replyContent, timestamp }; // Create new reply object
+      const replyDocRef = await addDoc(collection(postRef, 'replies'), newReply); // Add reply to Firestore
+  
+      setPosts(prevPosts => {
+        const updatedPosts = [...prevPosts];
+        updatedPosts[index].replies.push({ id: replyDocRef.id, ...newReply });
+        updatedPosts[index].showReplies = true;
+        updatedPosts[index].showReplyBox = false;
+        return updatedPosts;
+      });
+  
+      setReplyContent(""); // Clear reply content after submission
+    } catch (error) {
+      console.error("Error adding reply: ", error);
+    }
+  };  
 
   const toggleReplyBox = (index) => {
     setPosts(prevPosts => {
@@ -47,16 +182,14 @@ const DiscussionForumPage = () => {
       updatedPosts[index].showReplies = !updatedPosts[index].showReplies;
       return updatedPosts;
     });
-  };
+  };  
 
   const handleSearchChange = (event) => {
-    event.preventDefault();
     setSearchInput(event.target.value);
   }
 
   return (
     <div className="forumPage">
-      <Navigation pageTitle={'Discussion'} />
       <div className="body">
         <div className="body-search-and-category-container">
           <h2>CATEGORIES</h2>
@@ -72,11 +205,11 @@ const DiscussionForumPage = () => {
               className="singleTagButton" 
               onClick={() => {setCurrentCategory("All")}}
             >
-                <img 
-                  src="./img/general-discussion-icon.png"
-                  alt="three stick figures. two of them have comment boxes floating above their heads" 
-                />
-                <p>All Posts</p>
+              <img 
+                src="./img/general-discussion-icon.png"
+                alt="three stick figures. two of them have comment boxes floating above their heads" 
+              />
+              <p>All Posts</p>
             </button>
             <button 
               className="singleTagButton" 
@@ -135,7 +268,7 @@ const DiscussionForumPage = () => {
               <button className={"create-post-button"} onClick={() => setShowCreatePost(true)}>Create a Post</button>
             </div>
           )}
-    
+
           {showCreatePost && (
             <div className="input">
               <form onSubmit={handleSubmit}>
@@ -145,11 +278,20 @@ const DiscussionForumPage = () => {
                 <div>
                   <textarea name="content" placeholder="Content" required></textarea>
                 </div>
-                <button type="submit">Submit</button>
+                <div>
+                  <label htmlFor="category">Select Category:</label>
+                  <select id="category" name="category">
+                    <option value="Social">Social</option>
+                    <option value="Venting">Venting</option>
+                    <option value="Advice">Advice</option>
+                    <option value="Questions">Questions</option>
+                  </select>
+                </div>
+                <button className={"create-post-button"} type="submit">Submit</button>
               </form>
             </div>
           )}
-    
+
           <div className="allforumCards">
             {posts.map((post, index) => (
               <div key={index} className="forumCard">
@@ -159,37 +301,32 @@ const DiscussionForumPage = () => {
                   <p>Posted at: {formatTimestamp(post.timestamp)}</p>
                 </div>
                 <div className="buttonGroup">
+                  <button onClick={() => handleLike(post.id)}>
+                    <img 
+                      src={post.likedByUser ? "/img/heart-filled.png" : "/img/heart-blank.png"}
+                      alt="Like"
+                    />
+                    <span>{post.likes}</span>
+                  </button>
+                  <button onClick={() => toggleReplyBox(index)}>Reply</button>
                   {post.showReplyBox && (
-                    <div>
-                      <form onSubmit={(e) => {
-                        e.preventDefault();
-                        const reply = e.target.reply.value;
-                        handleReply(index, reply);
-                        toggleReplyBox(index);
-                        e.target.reset();
-                      }}>
-                        <input type="text" name="reply" placeholder="Your reply" required />
-                        <button type="submit">Submit</button>
-                      </form>
+                    <div className="replyBox">
+                      <textarea 
+                        placeholder="Type your reply..." 
+                        onChange={(e) => setReplyContent(e.target.value)} // Capture reply content
+                        value={replyContent} // Bind reply content to state
+                      />
+                      <button onClick={() => handleReply(post.id, replyContent, index)}>Submit Reply</button>
                     </div>
                   )}
-
-                  {!post.showReplyBox && (
-                    <div>
-                      <button onClick={() => toggleReplyBox(index)}>Reply</button>
-                    </div>
-                  )}
-
-                  {post.replies.length > 0 && (
-                    <div>
-                      <button onClick={() => toggleReplies(index)}>
-                        {post.showReplies ? "Hide Replies" : "Show Replies"}
-                      </button>
-                    </div>
+                  {post.replies && post.replies.length > 0 && (
+                    <button onClick={() => toggleReplies(index)}>
+                      {post.showReplies ? "Hide Replies" : "Show Replies"}
+                    </button>
                   )}
                 </div>
 
-                {post.showReplies && post.replies.map((reply, replyIndex) => (
+                {post.showReplies && post.replies && post.replies.map((reply, replyIndex) => (
                   <div key={replyIndex}>
                     <p>Reply: {reply.reply}</p>
                     <p>Posted at: {formatTimestamp(reply.timestamp)}</p>
@@ -202,7 +339,7 @@ const DiscussionForumPage = () => {
       </div>
       <Footer />
     </div>
-  );  
-};  
+  );
+};
 
 export default DiscussionForumPage;

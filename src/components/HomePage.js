@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import NavigationBar from "./NavigationBar";
 import Carousel from 'react-bootstrap/Carousel';
 import Footer from './Footer';
 
@@ -86,7 +85,6 @@ export default function HomePage() {
 
     return(
         <div className="homePage">
-            <NavigationBar pageTitle={'Home'} />
             <div className="body">
                 <h1 className="body-title">
                     Welcome to REACH

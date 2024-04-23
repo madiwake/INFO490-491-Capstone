@@ -1,5 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { signInWithRedirect, signOut, GoogleAuthProvider } from "firebase/auth";
 
 function NavBanner(props) {
     if(props.pageTitle === 'Home') {
@@ -31,51 +32,76 @@ function NavBanner(props) {
 }
 
 export default function NavigationBar(props) {
+    const googleSignIn = () => {
+        const provider = new GoogleAuthProvider();
+        signInWithRedirect(props.auth, provider);
+    };
+
+    const handleSignOut = () => {
+        signOut(props.auth);
+    };
+
     return (
         <header className="navigation-header">
             <nav className="navBar">
                 <h1 className="navBar-logo">
-                    <Link 
+                    <NavLink 
                         to='/'
                         className="navBar-logo-link"
+                        activeClassName="active"
                     >
                         REACH
-                    </Link>
+                    </NavLink>
                 </h1>
                 <ul className="navBar-menu">
                     <li className="navBar-menu-item home-link">
-                        <Link 
+                        <NavLink 
                             to='/'
                             className="navBar-menu-item-link"
+                            activeClassName="active"
                         >
                             Home
-                        </Link>
+                        </NavLink>
                     </li>
                     <li className="navBar-menu-item resources-link">
-                        <Link 
+                        <NavLink 
                             to="/resources" 
                             className="navBar-menu-item-link"
+                            activeClassName="active"
                         >
                             Resources
-                        </Link>
+                        </NavLink>
                     </li>
                     <li className="navBar-menu-item discussionForum-link">
-                        <Link 
+                        <NavLink 
                             to="/discussion-forum" 
                             className="navBar-menu-item-link"
+                            activeClassName="active"
                         >
                             Discussion
-                        </Link>
+                        </NavLink>
                     </li>
                     <li className="navBar-menu-item FAQ-link">
-                        <Link 
+                        <NavLink 
                             to="/how-to" 
                             className="navBar-menu-item-link"
+                            activeClassName="active"
                         >
                             How-to
-                        </Link>
+                        </NavLink>
                     </li>
                 </ul>
+
+                {/* Conditional rendering for sign-in/sign-out button */}
+                {props.user ? (
+                    <button className={"sign-in-button"} onClick={handleSignOut} alt="sign out" type="button">
+                        Sign Out
+                    </button>
+                ) : (
+                    <button className={"sign-in-button"} onClick={googleSignIn} alt="sign in with google" type="button">
+                        Sign In with Google
+                    </button>
+                )}
             </nav>
             <NavBanner pageTitle={props.pageTitle} />
         </header>

@@ -20,6 +20,8 @@ import './css/forumPageStyling.css';
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
+import { getAuth} from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -34,6 +36,12 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
+// Initialize Firestore
+const firestore = getFirestore(app);
+
+// Initialize Firebase Auth
+const auth = getAuth();
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -43,6 +51,8 @@ root.render(
       seattleResources={SEATTLERESOURCES} 
       uwResources={UWRESOURCES} 
       howToQuestions={HOWTOQUESTIONS}
+      auth={auth}
+      firestore={firestore} // Pass the firestore object to the App component
     />
   </BrowserRouter>
 );

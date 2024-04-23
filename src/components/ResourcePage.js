@@ -1,5 +1,4 @@
 import React, {  useEffect, useState } from "react";
-import Navigation from "./NavigationBar";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import Footer from "./Footer";
@@ -183,7 +182,6 @@ export default function ResourcePage(props) {
 
     return (
         <div className="resourcePage">
-            <Navigation pageTitle={"Resources"} />
             <div className="body">
                 <Tabs
                     defaultActiveKey="UW Resources"

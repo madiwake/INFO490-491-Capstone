@@ -51,6 +51,13 @@ div.howToPage .navigation-header .FAQ-link .navBar-menu-item-link {
     border-top-right-radius: 25px;
 }
 
+.navigation-header .sign-in-button {
+    background-color: transparent;
+    border: 2px solid #2F4775;
+    border-radius: 25px;
+    padding: .25rem .5rem;
+}
+
 @media (min-width:769px) {
     .navigation-header .navBar-spacer {
         padding: 50px;

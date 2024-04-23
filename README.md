@@ -27,6 +27,10 @@ The problem regarding not having a current community building resource can be so
     - (can access with uw affiliation) A study done on how much social support college students with physical disabilities feel they have when living in communities with similar people.
 
 ### Handoff Documents
+#### Relevant Links
+- Presentation Deck: [https://docs.google.com/presentation/d/1u1dfp3nuZWGeDISLPahzQc7ICJdFZodPY9j8Uz1hF9g/edit?usp=sharing](https://docs.google.com/presentation/d/1u1dfp3nuZWGeDISLPahzQc7ICJdFZodPY9j8Uz1hF9g/edit?usp=sharing)
+- Final Product: [https://informatics-capstone-reach.web.app](https://informatics-capstone-reach.web.app)
+
 #### Current Architecture and Tech Stack
 - Design
     - In order to design the application, Figma was used to create numerous prototypes, wireframes, and components that were then translated to code.

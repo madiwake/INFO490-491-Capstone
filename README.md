@@ -45,6 +45,23 @@ The problem regarding not having a current community building resource can be so
 
 #### Running/Setting-up Codebase
 In order to run the codebase, npm install command is necessary to install relevant dependencies in order to run the application. All the current dependencies can be viewed in the package.json file in the repository. In order to run the application locally on your system, use npm run start.
+- Firebase specifics:
+    - only use cloud firestore and hosting, no google analytics used
+        - in firebase init
+            - Proceed? Y
+            - set up cloud firestore
+            - firestore.rules
+            - firestore.indexes.json
+            - Public
+            - rewrite urls to /index.html? Y
+            - automatic builds and deploys to Github? N
+            - overwrite public/index.html? N
+        - make sure react-firebase-hooks are installed: npm install react-firebase-hooks
+        - before deploying run: npm run build
+        - when deploying run: firebase deploy --only hosting
+            - firebase deploy will reset the read/write rules unless you specify only hosting
+    - Babel dependency issue fix: npm install --save-dev @babel/plugin-proposal-private-property-in-object
+    - in firebase.json: make sure "public": "build" is correct in hosting (not "public": "public")
 
 #### "What to work on" and Future Ideas and Intentions for REACH
 The following ideas are intended to be used an inspiration for future development of REACH. If our team had more time, these would be things we would do to continue working on the project!

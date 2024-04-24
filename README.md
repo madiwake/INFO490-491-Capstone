@@ -38,12 +38,13 @@ The problem regarding not having a current community building resource can be so
     - Front-end:
         - The front-end of the application makes use of React. The codebase follows a “standard” React structure, in that is breaks up the code into components. In this case, each page is made its only js and css files. Components that are repeated among multiple pages (in this case, the Navigation bar and the Footer are also isolated in their own files) to reduce redundancy and allow for uniform changes across all pages that the component is present. Within each page, components are further broken down into parts of the page and provided their own function - improving readability. React-bootstrap is used to aid in the development of more complicated components (i.e. the carousel feature on the home page). Nested classnames are used in order to improve readability of the css files.
     - Back-end:
-        - Grace and Emily will talk about this part
+        - The back-end of the application utilizes Firebase for database and authentication purposes. The application uses
+         Firestore to implement a database that stores user info, forum posts, and replies and then allows for the retrieval
+         of this information, so it can be displayed on the front-end. Firebase authentication is also utilized to allow for 
+         Google email sign-in. Since Firebase is a Backend-as-a-Service that is a part of Google, it is reliable and was chosen due to its ability to be scaled up and securely deliver data.
 
 #### Running/Setting-up Codebase
 In order to run the codebase, npm install command is necessary to install relevant dependencies in order to run the application. All the current dependencies can be viewed in the package.json file in the repository. In order to run the application locally on your system, use npm run start.
-
-Grace and Emily talk about firebase and server needs?
 
 #### "What to work on" and Future Ideas and Intentions for REACH
 The following ideas are intended to be used an inspiration for future development of REACH. If our team had more time, these would be things we would do to continue working on the project!

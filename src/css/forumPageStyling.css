@@ -12,6 +12,10 @@
     justify-content: center;
 }
 
+.forumPage .body-search-and-category-container h2 {
+    margin-top: 1rem;
+}
+
 .forumPage .body > * {
     margin-bottom: 1rem;
 }
@@ -26,6 +30,24 @@
     max-width: 30rem;
 }
   
+.forumPage .body-postHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.forumPage .body-postHeader h3 {
+    padding: 0;
+    margin: 0;
+}
+.forumPage .signinToCreatePost-button,
+.forumPage .create-post-button {
+    background-color: transparent;
+    border: 1px solid #2F4775;
+    border-radius: 20px;
+    padding: 0 .75rem;
+    margin: 0 1rem;
+}
+
 .forumPage .body .allforumCards {
     display: flex;
     flex-direction: column;
@@ -37,12 +59,12 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: 75rem;
+    width: 100%;
     max-width: 80rem;
-    padding: 1.5rem;
     margin: 1.25rem 0;
-    border-radius: 20px;
+    border-radius: 15px;
     box-shadow: 8px 8px 20px 5px rgba(0, 0, 0, 0.25);
+    border: 1px solid #a1a1a1;
 }
   
 .forumPage .textSection {
@@ -51,8 +73,34 @@
     align-items: flex-start;
     flex-grow: 1;
 }
+.forumPage .forumCard .textSection-buttons {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: end;
+}
+.forumPage .textSection-replyButton,
+.forumPage .textSection-showRepliesButton {
+    background-color: transparent;
+    width: fit-content;
+    border: 1px solid #2F4775;
+    border-radius: 20px;
+    padding: 0 .75rem;
+}
+.forumPage .textSection-replyButton.active,
+.forumPage .textSection-showRepliesButton.active {
+    background-color: #ffc3a1;
+}
+.forumPage .textSection-buttons :last-child {
+    margin-left: .75rem;
+}
+
+
+.forumPage .textSection h3 {
+    margin-right: 48px;
+}
   
-.forumPage .forumCard button {
+/* .forumPage .forumCard button {
     background-color: #2F4775;
     color: white;
     border: none;
@@ -61,12 +109,60 @@
     margin: 0.25rem;
     cursor: pointer;
     align-self: flex-end;
+} */
+.forumPage .forumCard-post-container {
+    border-radius: 15px;
+    width: inherit;
+    box-shadow: 4px 4px 10px 2px rgba(0, 0, 0, 0.25);
+    padding: 1.5rem 1.5rem 1rem 1.5rem;
 }
-  
-.forumPage .forumCard .buttonGroup {
-    display: flex;
-    justify-content: flex-end; 
+
+.forumPage .forumCard-reply-container {
     width: 100%;
+    padding: 1.5rem 1.5rem .5rem 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 2px -1px rgba(0, 0, 0, 0.25);
+}
+
+.forumPage .forumCard-likeButton {
+    background-color: transparent;
+    border: none;
+    align-self: flex-end;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    padding: 1.5rem 1.5rem 0 0;
+}
+.forumPage .forumCard-likeIcon {
+    width: 23px;
+    padding-top: .2rem;
+}
+.forumPage .forumCard-likeButton p {
+    text-align: center;
+    margin-right: .25rem;
+    
+}
+
+.forumPage .replyBox {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0 1.5rem 1rem 1.5rem;
+}
+.forumPage .replyBox-textArea {
+    margin-top: 1.5rem;
+    height: 113px;
+    background-color: #fbfbfb;
+    border: 1px solid #c8c8c8;
+    border-radius: 10px;
+}
+.forumPage .replyBox-submitButton {
+    width: fit-content;
+    background-color: transparent;
+    border: 1px solid #2F4775;
+    border-radius: 25px;
+    margin-top: .75rem;
+    align-self: flex-end;
 }
   
 .forumPage .input form {
@@ -84,7 +180,6 @@
     margin-bottom: 0.5rem;
 }
   
-/* .forumPage .body button, */
 .forumPage .input-container button {
     background-color: #2F4775;
     color: white;
@@ -113,7 +208,7 @@
     border-radius: 25px;
     border: 1px solid #6C98FC;
     margin-bottom: 2rem;
-    width: 70vw;
+    width: 80%;
 }
 
 .forumPage .singleTagButton {

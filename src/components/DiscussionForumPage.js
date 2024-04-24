@@ -3,6 +3,7 @@ import Footer from "./Footer";
 import NavigationBar from './NavigationBar';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc, query, where, getDocs as getSubcollectionDocs } from "firebase/firestore";
+import { signInWithRedirect, GoogleAuthProvider } from "firebase/auth";
 
 const DiscussionForumPage = (props) => {
   const [user] = useAuthState(props.auth);
@@ -12,6 +13,11 @@ const DiscussionForumPage = (props) => {
   const [currentCategory, setCurrentCategory] = useState("All");
   const [replyContent, setReplyContent] = useState(""); // Initialize reply content state
   const [likedPosts, setLikedPosts] = useState([]); // Store liked posts for the current user
+
+  const googleSignIn = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithRedirect(props.auth, provider);
+  };
 
   useEffect(() => {
     fetchData();
@@ -263,77 +269,128 @@ const DiscussionForumPage = (props) => {
               currentCategory
             }
           </h3>
+          {user === null ? 
+            <div> 
+              <button 
+                onClick={googleSignIn} 
+                alt="sign in with google" 
+                type="button"
+                className="signinToCreatePost-button"
+              >
+                Sign in to Post
+              </button>
+            </div>
+          :
+            <div>
+              {!showCreatePost && (
+                <div>
+                  <button 
+                    className="create-post-button" 
+                    onClick={() => setShowCreatePost(true)}
+                  >
+                    Create a Post
+                  </button>
+                </div>
+              )}
+              {showCreatePost && (
+                <div className="input">
+                  <form onSubmit={handleSubmit}>
+                    <div>
+                      <input type="text" name="title" placeholder="Title" required />
+                    </div>
+                    <div>
+                      <textarea name="content" placeholder="Content" required></textarea>
+                    </div>
+                    <div>
+                      <label htmlFor="category">Select Category:</label>
+                      <select id="category" name="category">
+                        <option value="Social">Social</option>
+                        <option value="Venting">Venting</option>
+                        <option value="Advice">Advice</option>
+                        <option value="Questions">Questions</option>
+                      </select>
+                    </div>
+                    <button className={"create-post-button"} type="submit">Submit</button>
+                  </form>
+                </div>
+              )}
+            </div>
+          }
         </div>
         <div className="body-posts">
-          {!showCreatePost && (
-            <div>
-              <button className={"create-post-button"} onClick={() => setShowCreatePost(true)}>Create a Post</button>
-            </div>
-          )}
 
-          {showCreatePost && (
-            <div className="input">
-              <form onSubmit={handleSubmit}>
-                <div>
-                  <input type="text" name="title" placeholder="Title" required />
-                </div>
-                <div>
-                  <textarea name="content" placeholder="Content" required></textarea>
-                </div>
-                <div>
-                  <label htmlFor="category">Select Category:</label>
-                  <select id="category" name="category">
-                    <option value="Social">Social</option>
-                    <option value="Venting">Venting</option>
-                    <option value="Advice">Advice</option>
-                    <option value="Questions">Questions</option>
-                  </select>
-                </div>
-                <button className={"create-post-button"} type="submit">Submit</button>
-              </form>
-            </div>
-          )}
-
+          
           <div className="allforumCards">
             {posts.map((post, index) => (
               <div key={index} className="forumCard">
-                <div className="textSection">
-                  <h3>{post.title}</h3>
-                  <p>{post.content}</p>
-                  <p>Posted at: {formatTimestamp(post.timestamp)}</p>
-                </div>
-                <div className="buttonGroup">
-                  <button onClick={() => handleLike(post.id)}>
+                  <button 
+                    onClick={() => handleLike(post.id)}
+                    className="forumCard-likeButton"
+                  >
+                    <p>{post.likes}</p>
                     <img 
-                      src={post.likedByUser ? "/img/heart-filled.png" : "/img/heart-blank.png"}
+                      className="forumCard-likeIcon"
+                      src={post.likedByUser ? "/img/filled-heart.png" : "/img/empty-heart.png"}
                       alt="Like"
                     />
-                    <span>{post.likes}</span>
                   </button>
-                  <button onClick={() => toggleReplyBox(index)}>Reply</button>
-                  {post.showReplyBox && (
+                <div className="forumCard-post-container">
+                  <div className="textSection">
+                    <h3>{post.title}</h3>
+                    <p>{post.content}</p>
+                    <p>Posted on: {formatTimestamp(post.timestamp)}</p>
+                  </div>
+                  <div className="textSection-buttons">
+                    <button 
+                      onClick={() => toggleReplyBox(index)}
+                      className={`textSection-replyButton ${post.showReplyBox ? 'active' : ''}`}
+                    >
+                      {post.showReplyBox ? "Cancel" : "Reply"}
+                    </button>
+                    {
+                      post.replies && 
+                      post.replies.length > 0 && 
+                      (
+                        <button 
+                          onClick={() => toggleReplies(index)}
+                          // className="textSection-showRepliesButton"
+                          className={`textSection-showRepliesButton ${post.showReplies ? 'active' : ''}`}
+                        >
+                          {post.showReplies ? "Hide Replies" : "Show Replies"}
+                        </button>
+                      )
+                    }
+                  </div>
+                </div>
+                {post.showReplyBox && (
                     <div className="replyBox">
                       <textarea 
-                        placeholder="Type your reply..." 
+                        className="replyBox-textArea"
+                        placeholder="  Type your reply..." 
                         onChange={(e) => setReplyContent(e.target.value)} // Capture reply content
                         value={replyContent} // Bind reply content to state
                       />
-                      <button onClick={() => handleReply(post.id, replyContent, index)}>Submit Reply</button>
+                      <button 
+                        onClick={() => handleReply(post.id, replyContent, index)}
+                        className="replyBox-submitButton"
+                      >
+                        Post Reply
+                      </button>
                     </div>
                   )}
-                  {post.replies && post.replies.length > 0 && (
-                    <button onClick={() => toggleReplies(index)}>
-                      {post.showReplies ? "Hide Replies" : "Show Replies"}
-                    </button>
-                  )}
-                </div>
-
-                {post.showReplies && post.replies && post.replies.map((reply, replyIndex) => (
-                  <div key={replyIndex}>
-                    <p>Reply: {reply.reply}</p>
-                    <p>Posted at: {formatTimestamp(reply.timestamp)}</p>
-                  </div>
-                ))}
+                { 
+                  post.showReplies && 
+                  post.replies &&
+                  post.replies.map((reply, replyIndex) => (
+                      <div 
+                        key={replyIndex}
+                        className="forumCard-reply-container"
+                      >
+                        <p>Reply: {reply.reply}</p>
+                        <p>Posted at: {formatTimestamp(reply.timestamp)}</p>
+                      </div>
+                    ))
+                }
               </div>
             ))}
           </div>

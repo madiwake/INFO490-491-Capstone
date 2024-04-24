@@ -48,7 +48,7 @@ export default function NavigationBar(props) {
                     <NavLink 
                         to='/'
                         className="navBar-logo-link"
-                        activeClassName="active"
+                        activeclassname="active"
                     >
                         REACH
                     </NavLink>
@@ -58,7 +58,7 @@ export default function NavigationBar(props) {
                         <NavLink 
                             to='/'
                             className="navBar-menu-item-link"
-                            activeClassName="active"
+                            activeclassname="active"
                         >
                             Home
                         </NavLink>
@@ -67,7 +67,7 @@ export default function NavigationBar(props) {
                         <NavLink 
                             to="/resources" 
                             className="navBar-menu-item-link"
-                            activeClassName="active"
+                            activeclassname="active"
                         >
                             Resources
                         </NavLink>
@@ -76,7 +76,7 @@ export default function NavigationBar(props) {
                         <NavLink 
                             to="/discussion-forum" 
                             className="navBar-menu-item-link"
-                            activeClassName="active"
+                            activeclassname="active"
                         >
                             Discussion
                         </NavLink>
@@ -85,7 +85,7 @@ export default function NavigationBar(props) {
                         <NavLink 
                             to="/how-to" 
                             className="navBar-menu-item-link"
-                            activeClassName="active"
+                            activeclassname="active"
                         >
                             How-to
                         </NavLink>

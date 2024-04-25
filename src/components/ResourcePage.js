@@ -44,9 +44,9 @@ function FilterBar(props) {
                 >
                     {filterName}
                     {selectedFilters.includes(filterName) ? 
-                        (<img className="filterBar-option-button-removeicon" src="/img/remove-icon.png" alt="plus icon"/> ) 
+                        (<img className="filterBar-option-button-removeicon" src="/img/checked-box.png" alt="plus icon"/> ) 
                          : 
-                        (<img className="filterBar-option-button-plusicon" src="/img/plus-icon.png" alt="X icon"/>)
+                        (<img className="filterBar-option-button-plusicon" src="/img/unchecked-box.png" alt="X icon"/>)
                     }
                 </button>
             </li>

@@ -1,36 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 import Footer from "./Footer";
 import Masonry, {ResponsiveMasonry} from "react-responsive-masonry";
 import NavigationBar from './NavigationBar';
 import { useAuthState } from "react-firebase-hooks/auth";
 
+function HowToCard(props) {
+    const [showingAnswer, setShowingAnswer] = useState(false);
+    const answerParagraphs = props.answer.map((paragraph) => {
+        return (
+            <p className="howToCard-answer" key={paragraph}> 
+                {paragraph}
+            </p>
+        )
+    })
+    return (
+        <div 
+            className="howToCard" 
+            onClick={() => {setShowingAnswer(!showingAnswer)}}
+            type="button"
+        >
+            <div className="howToCard-question-container">
+                <img 
+                    className="howToCard-question-icon" 
+                    src="/img/questionMark-icon.png"
+                    alt="dark blue circle with a white question mark in the center" 
+                />
+                <p className="howToCard-question">
+                    {props.question}
+                </p>
+            </div>
+            <div className={`howToCard-answer-container ${showingAnswer ? 'showing' : ''}`}>
+                {/* {showingAnswer ? answerParagraphs : ""} */}
+                {answerParagraphs}
+            </div>
+        </div>
+    )
+}
+
 export default function HowToPage(props) {
     const [user] = useAuthState(props.auth);
 
     const howToCards = props.howToQuestions.map((question) => {
-        const answerParagraphs = question.answer.map((paragraph) => {
-            return (
-                <p>
-                    {paragraph}
-                </p>
-            )
-        })
         return (
-            <div className="howToCard">
-                <div className="howToCard-question-container">
-                    <img 
-                        className="howToCard-question-icon" 
-                        src="/img/questionMark-icon.png"
-                        alt="dark blue circle with a white question mark in the center" 
-                    />
-                    <p className="howToCard-question">
-                        {question.question}
-                    </p>
-                </div>
-                <p className="howToCard-answer">
-                    {answerParagraphs}
-                </p>
-            </div>
+            <HowToCard 
+                key={question.question}
+                question={question.question} 
+                answer={question.answer} 
+            />
         );
     });
 
@@ -43,7 +59,7 @@ export default function HowToPage(props) {
                 </p>
                 <div className="body-allhowToCards">
                     <ResponsiveMasonry 
-                        columnsCountBreakPoints={{100: 1, 768: 2}}
+                        columnsCountBreakPoints={{100: 1}}
                     >
                         <Masonry
                             className="masonry-container"

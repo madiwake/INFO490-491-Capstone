@@ -11,8 +11,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 90%;
-    max-width: 404px;
+    align-items: center;
+    width: 80%;
     padding: 1rem;
     margin: 1rem 0;
     border-radius: 20px;
@@ -25,22 +25,24 @@
     margin: 0;
 }
 .howToPage .howToCard-answer {
-    display: none;
     overflow-wrap: break-word;
+    text-align: center;
+    margin: 1rem;
+    /* transition: 1s ease-in-out; */
 }
+
+.howToPage .howToCard-answer-container {
+    display: none;
+    /* transition: .5s ease-in-out; */
+}
+.howToPage .howToCard-answer-container.showing {
+    display: inline;
+    /* transition: .5s ease-in-out; */
+}
+
 .howToPage .masonry-container > div {
     align-items: center;
     justify-content: center;
-}
-
-.howToPage .howToCard:hover .howToCard-answer,
-.howToPage .howToCard:focus .howToCard-answer {
-    display: inline;
-}
-
-.howToPage .howToCard:hover .howToCard-question-container,
-.howToPage .howToCard:focus .howToCard-question-container {
-    display: none;
 }
 
 .howToPage .howToCard-question-container {

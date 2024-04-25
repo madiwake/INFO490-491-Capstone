@@ -53,55 +53,56 @@ export default function NavigationBar(props) {
                         REACH
                     </NavLink>
                 </h1>
-                <ul className="navBar-menu">
-                    <li className="navBar-menu-item home-link">
-                        <NavLink 
-                            to='/'
-                            className="navBar-menu-item-link"
-                            activeclassname="active"
-                        >
-                            Home
-                        </NavLink>
-                    </li>
-                    <li className="navBar-menu-item resources-link">
-                        <NavLink 
-                            to="/resources" 
-                            className="navBar-menu-item-link"
-                            activeclassname="active"
-                        >
-                            Resources
-                        </NavLink>
-                    </li>
-                    <li className="navBar-menu-item discussionForum-link">
-                        <NavLink 
-                            to="/discussion-forum" 
-                            className="navBar-menu-item-link"
-                            activeclassname="active"
-                        >
-                            Discussion
-                        </NavLink>
-                    </li>
-                    <li className="navBar-menu-item FAQ-link">
-                        <NavLink 
-                            to="/how-to" 
-                            className="navBar-menu-item-link"
-                            activeclassname="active"
-                        >
-                            How-to
-                        </NavLink>
-                    </li>
-                </ul>
-
-                {/* Conditional rendering for sign-in/sign-out button */}
-                {props.user ? (
-                    <button className={"sign-in-button"} onClick={handleSignOut} alt="sign out" type="button">
-                        Sign Out
-                    </button>
-                ) : (
-                    <button className={"sign-in-button"} onClick={googleSignIn} alt="sign in with google" type="button">
-                        Sign In with Google
-                    </button>
-                )}
+                <div className="navBar-menu-container">
+                    <ul className="navBar-menu">
+                        <li className="navBar-menu-item home-link">
+                            <NavLink 
+                                to='/'
+                                className="navBar-menu-item-link"
+                                activeclassname="active"
+                            >
+                                Home
+                            </NavLink>
+                        </li>
+                        <li className="navBar-menu-item resources-link">
+                            <NavLink 
+                                to="/resources" 
+                                className="navBar-menu-item-link"
+                                activeclassname="active"
+                            >
+                                Resources
+                            </NavLink>
+                        </li>
+                        <li className="navBar-menu-item discussionForum-link">
+                            <NavLink 
+                                to="/discussion-forum" 
+                                className="navBar-menu-item-link"
+                                activeclassname="active"
+                            >
+                                Discussion
+                            </NavLink>
+                        </li>
+                        <li className="navBar-menu-item FAQ-link">
+                            <NavLink 
+                                to="/how-to" 
+                                className="navBar-menu-item-link"
+                                activeclassname="active"
+                            >
+                                How-to
+                            </NavLink>
+                        </li>
+                    </ul>
+                    {/* Conditional rendering for sign-in/sign-out button */}
+                    {props.user ? (
+                        <button className={"sign-in-button"} onClick={handleSignOut} alt="sign out" type="button">
+                            Sign Out
+                        </button>
+                    ) : (
+                        <button className={"sign-in-button"} onClick={googleSignIn} alt="sign in with google" type="button">
+                            Sign In with Google
+                        </button>
+                    )}
+                </div>
             </nav>
             <NavBanner pageTitle={props.pageTitle} />
         </header>

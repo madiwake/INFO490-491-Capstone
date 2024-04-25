@@ -5,12 +5,19 @@
     align-items: center;
     padding-top: .5rem;
 }
+.navigation-header .navBar-menu-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: wrap;
+}
 .navigation-header .navBar-menu {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     flex-grow: 1;
 }
+
 .navigation-header .navBar-logo-link {
     text-decoration: none;
     color: #6C98FC;
@@ -33,6 +40,18 @@ div.howToPage .navigation-header .FAQ-link .navBar-menu-item-link {
     font-weight: bold;
     font-size: 1.125rem;
 }
+
+.navigation-header .sign-in-button {
+    background-color: transparent;
+    border: 1px solid #2F4775;
+    border-radius: 25px;
+    padding: 0 .75rem;
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+    margin: 0 1rem 1rem 2.5rem;
+    align-self: flex-end;
+}
+
 .navigation-header .navBanner {
     position: relative;
 }
@@ -49,13 +68,6 @@ div.howToPage .navigation-header .FAQ-link .navBar-menu-item-link {
     color: white;
     padding: .25rem 1rem 0 .5rem;
     border-top-right-radius: 25px;
-}
-
-.navigation-header .sign-in-button {
-    background-color: transparent;
-    border: 2px solid #2F4775;
-    border-radius: 25px;
-    padding: .25rem .5rem;
 }
 
 @media (min-width:769px) {

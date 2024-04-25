@@ -108,7 +108,7 @@ function Resources(props) {
                         key={tag} 
                         className={`${tag} resourceCard-tag`}
                     >
-                        RSO
+                        Club/RSO
                     </li>
                 );
             } else {

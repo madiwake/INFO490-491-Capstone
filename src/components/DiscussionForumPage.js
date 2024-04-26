@@ -22,7 +22,7 @@ const DiscussionForumPage = (props) => {
   useEffect(() => {
     fetchData();
     fetchLikedPosts(); // Fetch liked posts for the current user
-  }, []);
+  }, [currentCategory]);
 
   useEffect(() => {
     // Save liked posts to localStorage whenever the likedPosts state changes
@@ -43,14 +43,16 @@ const DiscussionForumPage = (props) => {
           replies.push({ id: replyDoc.id, ...replyDoc.data() });
         });
 
-        fetchedPosts.push({
-          id: postDoc.id,
-          ...postData,
-          likedByUser: likedPosts.includes(postDoc.id), // Check if the post is liked by the user
-          showReplyBox: false,
-          showReplies: false,
-          replies: replies
-        });
+        if (currentCategory === "All" || postData.category === currentCategory) {
+          fetchedPosts.push({
+            id: postDoc.id,
+            ...postData,
+            likedByUser: likedPosts.includes(postDoc.id), // Check if the post is liked by the user
+            showReplyBox: false,
+            showReplies: false,
+            replies: replies
+          });
+        }
       }
 
       setPosts(fetchedPosts);
@@ -195,6 +197,7 @@ const DiscussionForumPage = (props) => {
     setSearchInput(event.target.value);
   }
 
+ // JSX code with category icons directly embedded
   return (
     <div className="forumPage">
       <NavigationBar auth={props.auth} pageTitle={'Discussion'} user={user} />
@@ -210,8 +213,8 @@ const DiscussionForumPage = (props) => {
           />
           <div className="tagButtons">
             <button 
-              className="singleTagButton" 
-              onClick={() => {setCurrentCategory("All")}}
+              className={`singleTagButton ${currentCategory === "All" ? 'active' : ''}`} 
+              onClick={() => setCurrentCategory("All")}
             >
               <img 
                 src="./img/general-discussion-icon.png"
@@ -220,8 +223,8 @@ const DiscussionForumPage = (props) => {
               <p>All Posts</p>
             </button>
             <button 
-              className="singleTagButton" 
-              onClick={() => {setCurrentCategory("Social")}}
+              className={`singleTagButton ${currentCategory === "Social" ? 'active' : ''}`} 
+              onClick={() => setCurrentCategory("Social")}
             >
               <img 
                 src="./img/social-discussion-icon.png" 
@@ -230,8 +233,8 @@ const DiscussionForumPage = (props) => {
               <p>Social</p>
             </button>
             <button 
-              className="singleTagButton" 
-              onClick={() => {setCurrentCategory("Venting")}}
+              className={`singleTagButton ${currentCategory === "Venting" ? 'active' : ''}`} 
+              onClick={() => setCurrentCategory("Venting")}
             >
               <img 
                 src="./img/venting-discussion-icon.png" 
@@ -240,8 +243,8 @@ const DiscussionForumPage = (props) => {
               <p>Venting</p>
             </button>
             <button 
-              className="singleTagButton" 
-              onClick={() => {setCurrentCategory("Advice")}}
+              className={`singleTagButton ${currentCategory === "Advice" ? 'active' : ''}`} 
+              onClick={() => setCurrentCategory("Advice")}
             >
               <img 
                 src="./img/advice-discussion-icon.png" 
@@ -250,8 +253,8 @@ const DiscussionForumPage = (props) => {
               <p>Advice</p>
             </button>
             <button 
-              className="singleTagButton" 
-              onClick={() => {setCurrentCategory("Questions")}}
+              className={`singleTagButton ${currentCategory === "Questions" ? 'active' : ''}`} 
+              onClick={() => setCurrentCategory("Questions")}
             >
               <img 
                 src="./img/question-discussion-icon.png" 
@@ -262,7 +265,7 @@ const DiscussionForumPage = (props) => {
           </div>
         </div>
         <div className="body-postHeader">
-          <h3>
+        <h3>
             {currentCategory === "All" ? 
               "All Posts"
               : 
@@ -318,25 +321,31 @@ const DiscussionForumPage = (props) => {
           }
         </div>
         <div className="body-posts">
-
-          
           <div className="allforumCards">
             {posts.map((post, index) => (
               <div key={index} className="forumCard">
-                  <button 
-                    onClick={() => handleLike(post.id)}
-                    className="forumCard-likeButton"
-                  >
-                    <p>{post.likes}</p>
-                    <img 
-                      className="forumCard-likeIcon"
-                      src={post.likedByUser ? "/img/filled-heart.png" : "/img/empty-heart.png"}
-                      alt="Like"
-                    />
-                  </button>
+                <button 
+                  onClick={() => handleLike(post.id)}
+                  className="forumCard-likeButton"
+                >
+                  <p>{post.likes}</p>
+                  <img 
+                    className="forumCard-likeIcon"
+                    src={post.likedByUser ? "/img/filled-heart.png" : "/img/empty-heart.png"}
+                    alt="Like"
+                  />
+                </button>
                 <div className="forumCard-post-container">
                   <div className="textSection">
-                    <h3>{post.title}</h3>
+                    <div className="title-and-category">
+                      <div className="category-icon">
+                        {post.category === "Social" && <img src="/img/social-discussion-icon.png" alt="Social" />}
+                        {post.category === "Venting" && <img src="/img/venting-discussion-icon.png" alt="Venting" />}
+                        {post.category === "Advice" && <img src="/img/advice-discussion-icon.png" alt="Advice" />}
+                        {post.category === "Questions" && <img src="/img/question-discussion-icon.png" alt="Questions" />}
+                      </div>
+                      <h3>{post.title}</h3>
+                    </div>
                     <p>{post.content}</p>
                     <p>Posted on: {formatTimestamp(post.timestamp)}</p>
                   </div>

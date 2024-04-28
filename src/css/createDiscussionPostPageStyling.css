@@ -1,0 +1,46 @@
+.createPostPage .body {
+    padding-top: .5rem;
+    min-height: 51vh; /* what does this do? */
+    flex-grow: 1;
+}
+
+.createPostPage h2 {
+    font-family: "Raleway", sans-serif;
+    font-weight: 700;
+    margin-top: 1rem;
+    margin-bottom: .75rem;
+    text-align: center;
+}
+.body-backButton {
+    margin-left: 2rem;
+    background-color: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+}
+.body-backButton img {
+    width: 10px;
+    margin-right: .5rem;
+}
+
+.createPostPage .tagImages {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+.createPostPage .singleTagImage {
+    background-color: transparent;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 .75rem;
+}
+
+.createPostPage .singleTagImage img {
+    width: 60px;
+    height: 60px;
+}

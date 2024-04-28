@@ -4,15 +4,20 @@ import NavigationBar from './NavigationBar';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc, query, where, getDocs as getSubcollectionDocs } from "firebase/firestore";
 import { signInWithRedirect, GoogleAuthProvider } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const DiscussionForumPage = (props) => {
   const [user] = useAuthState(props.auth);
-  const [posts, setPosts] = useState([]);
+  // const [posts, setPosts] = useState([]);
+  const posts = props.posts;
+  const setPosts = props.setPosts;
   const [showCreatePost, setShowCreatePost] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const [currentCategory, setCurrentCategory] = useState("All");
   const [replyContent, setReplyContent] = useState(""); // Initialize reply content state
   const [likedPosts, setLikedPosts] = useState([]); // Store liked posts for the current user
+
+  const navigate = useNavigate();
 
   const googleSignIn = () => {
     const provider = new GoogleAuthProvider();
@@ -108,7 +113,7 @@ const DiscussionForumPage = (props) => {
       setPosts(prevPosts => [...prevPosts, newPost]);
 
       e.target.reset();
-      setShowCreatePost(false);
+      // setShowCreatePost(false); replace with navigate back to discussion page
     } catch (error) {
       console.error("Error adding document: ", error);
     }
@@ -200,7 +205,11 @@ const DiscussionForumPage = (props) => {
  // JSX code with category icons directly embedded
   return (
     <div className="forumPage">
-      <NavigationBar auth={props.auth} pageTitle={'Discussion'} user={user} />
+      <NavigationBar 
+        auth={props.auth} 
+        pageTitle={'Discussion'} 
+        user={user} 
+      />
       <div className="body">
         <div className="body-search-and-category-container">
           <h2>CATEGORIES</h2>
@@ -213,51 +222,71 @@ const DiscussionForumPage = (props) => {
           />
           <div className="tagButtons">
             <button 
-              className={`singleTagButton ${currentCategory === "All" ? 'active' : ''}`} 
+              className="singleTagButton" 
               onClick={() => setCurrentCategory("All")}
             >
               <img 
-                src="./img/general-discussion-icon.png"
+                src={currentCategory === "All" ? 
+                  "./img/general-discussion-icon-active.png" 
+                  : 
+                  "./img/general-discussion-icon.png"
+                }
                 alt="three stick figures. two of them have comment boxes floating above their heads" 
               />
               <p>All Posts</p>
             </button>
             <button 
-              className={`singleTagButton ${currentCategory === "Social" ? 'active' : ''}`} 
+              className="singleTagButton" 
               onClick={() => setCurrentCategory("Social")}
             >
               <img 
-                src="./img/social-discussion-icon.png" 
+                src={currentCategory === "Social" ? 
+                  "./img/social-discussion-icon-active.png" 
+                  : 
+                  "./img/social-discussion-icon.png"
+                }
                 alt="two stick figures"
               />
               <p>Social</p>
             </button>
             <button 
-              className={`singleTagButton ${currentCategory === "Venting" ? 'active' : ''}`} 
+              className="singleTagButton" 
               onClick={() => setCurrentCategory("Venting")}
             >
               <img 
-                src="./img/venting-discussion-icon.png" 
+                src={currentCategory === "Venting" ? 
+                  "./img/venting-discussion-icon-active.png" 
+                  : 
+                  "./img/venting-discussion-icon.png"
+                } 
                 alt="one stick figure with sound waves coming from their head"
               />
               <p>Venting</p>
             </button>
             <button 
-              className={`singleTagButton ${currentCategory === "Advice" ? 'active' : ''}`} 
+              className="singleTagButton" 
               onClick={() => setCurrentCategory("Advice")}
             >
               <img 
-                src="./img/advice-discussion-icon.png" 
+                src={currentCategory === "Advice" ? 
+                  "./img/advice-discussion-icon-active.png" 
+                  : 
+                  "./img/advice-discussion-icon.png"
+                } 
                 alt="two stick figure heads with lines connecting them to form a circle"
               />
               <p>Advice</p>
             </button>
             <button 
-              className={`singleTagButton ${currentCategory === "Questions" ? 'active' : ''}`} 
+              className="singleTagButton" 
               onClick={() => setCurrentCategory("Questions")}
             >
               <img 
-                src="./img/question-discussion-icon.png" 
+                src={currentCategory === "Questions" ? 
+                  "./img/question-discussion-icon-active.png" 
+                  : 
+                  "./img/question-discussion-icon.png"
+                }
                 alt="dark blue circle with question mark in it"
               />
               <p>Questions</p>
@@ -265,7 +294,7 @@ const DiscussionForumPage = (props) => {
           </div>
         </div>
         <div className="body-postHeader">
-        <h3>
+          <h3>
             {currentCategory === "All" ? 
               "All Posts"
               : 
@@ -288,14 +317,14 @@ const DiscussionForumPage = (props) => {
               {!showCreatePost && (
                 <div>
                   <button 
-                    className="create-post-button" 
-                    onClick={() => setShowCreatePost(true)}
+                    className="create-post-button"
+                    onClick={() => navigate("/create-discussion-post")}
                   >
-                    Create a Post
+                    Create Post
                   </button>
                 </div>
               )}
-              {showCreatePost && (
+              {/* {showCreatePost && (
                 <div className="input">
                   <form onSubmit={handleSubmit}>
                     <div>
@@ -316,10 +345,11 @@ const DiscussionForumPage = (props) => {
                     <button className={"create-post-button"} type="submit">Submit</button>
                   </form>
                 </div>
-              )}
+              )} */}
             </div>
           }
         </div>
+        <p>All posts are anonymous! Even if you are logged in, you can feel comfortable posting and commenting without people knowing it's you. You are free to disclose your name within your post or reply, but you don't have too!</p>
         <div className="body-posts">
           <div className="allforumCards">
             {posts.map((post, index) => (
@@ -362,7 +392,6 @@ const DiscussionForumPage = (props) => {
                       (
                         <button 
                           onClick={() => toggleReplies(index)}
-                          // className="textSection-showRepliesButton"
                           className={`textSection-showRepliesButton ${post.showReplies ? 'active' : ''}`}
                         >
                           {post.showReplies ? "Hide Replies" : "Show Replies"}

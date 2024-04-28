@@ -1,18 +1,65 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import DiscussionForumPage from './DiscussionForumPage';
 import HowToPage from './HowToPage';
 import ResourcePage from './ResourcePage';
 import HomePage from './HomePage';
+import CreateDiscussionPostPage from './CreateDiscussionPostPage';
 
 const App = (props) => {
+  const [posts, setPosts] = useState([]);
   return (
     <Routes>
-      <Route path='home' element={<HomePage auth={props.auth}/>} />
-      <Route path='resources' element={<ResourcePage auth={props.auth} onlineResources={props.onlineResources} uwResources={props.uwResources} seattleResources={props.seattleResources} />} />
-      <Route path='discussion-forum' element={<DiscussionForumPage auth={props.auth} firestore={props.firestore} />} />
-      <Route path='how-to' element={<HowToPage auth={props.auth} howToQuestions={props.howToQuestions} />} />
-      <Route path='/' element={<Navigate to='home'/>} />
+      <Route 
+        path='home' 
+        element={<HomePage auth={props.auth}/>} 
+      />
+      <Route 
+        path='resources' 
+        element={
+          <ResourcePage 
+            auth={props.auth} 
+            onlineResources={props.onlineResources} 
+            uwResources={props.uwResources} 
+            seattleResources={props.seattleResources} 
+          />
+        } 
+      />
+      <Route 
+        path='discussion-forum' 
+        element={
+          <DiscussionForumPage 
+            auth={props.auth} 
+            firestore={props.firestore}
+            posts={posts}
+            setPosts={setPosts} 
+          />
+        }
+      /> 
+      <Route 
+        path="create-discussion-post" 
+        element={
+          <CreateDiscussionPostPage 
+            auth={props.auth} 
+            firestore={props.firestore}
+            posts={posts}
+            setPosts={setPosts}
+          />
+        } 
+      />
+      <Route 
+        path='how-to' 
+        element={
+          <HowToPage 
+            auth={props.auth} 
+            howToQuestions={props.howToQuestions} 
+          />
+        } 
+      />
+      <Route 
+        path='/' 
+        element={<Navigate to='home'/>} 
+      />
     </Routes>
   );
 };

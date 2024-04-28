@@ -100,16 +100,6 @@
     margin-right: 48px;
 }
   
-/* .forumPage .forumCard button {
-    background-color: #2F4775;
-    color: white;
-    border: none;
-    border-radius: 1.5rem;
-    padding: 0.75rem 1.5rem;
-    margin: 0.25rem;
-    cursor: pointer;
-    align-self: flex-end;
-} */
 .forumPage .forumCard-post-container {
     border-radius: 15px;
     width: inherit;
@@ -219,6 +209,7 @@
     justify-content: center;
     align-items: center;
     margin: 0 .75rem;
+    padding: 0 .25rem;
 }
 
 .forumPage .singleTagButton img {

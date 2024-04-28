@@ -82,42 +82,42 @@ const DiscussionForumPage = (props) => {
     return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const title = e.target.title.value;
-    const content = e.target.content.value;
-    const category = e.target.category.value;
-    const timestamp = Date.now();
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   const title = e.target.title.value;
+  //   const content = e.target.content.value;
+  //   const category = e.target.category.value;
+  //   const timestamp = Date.now();
   
-    try {
-      const docRef = await addDoc(collection(props.firestore, 'forumposts'), {
-        title,
-        content,
-        category,
-        timestamp,
-        userId: user?.uid,
-        likes: 0 // Initialize likes count
-      });
+  //   try {
+  //     const docRef = await addDoc(collection(props.firestore, 'forumposts'), {
+  //       title,
+  //       content,
+  //       category,
+  //       timestamp,
+  //       userId: user?.uid,
+  //       likes: 0 // Initialize likes count
+  //     });
 
-      const newPost = {
-        id: docRef.id,
-        title,
-        content,
-        category,
-        timestamp,
-        userId: user?.uid,
-        likes: 0, // Initialize likes count
-        likedByUser: false // Initialize likedByUser field
-      };
+  //     const newPost = {
+  //       id: docRef.id,
+  //       title,
+  //       content,
+  //       category,
+  //       timestamp,
+  //       userId: user?.uid,
+  //       likes: 0, // Initialize likes count
+  //       likedByUser: false // Initialize likedByUser field
+  //     };
 
-      setPosts(prevPosts => [...prevPosts, newPost]);
+  //     setPosts(prevPosts => [...prevPosts, newPost]);
 
-      e.target.reset();
-      // setShowCreatePost(false); replace with navigate back to discussion page
-    } catch (error) {
-      console.error("Error adding document: ", error);
-    }
-  };
+  //     e.target.reset();
+  //     // setShowCreatePost(false); replace with navigate back to discussion page
+  //   } catch (error) {
+  //     console.error("Error adding document: ", error);
+  //   }
+  // };
 
   const handleLike = async (postId) => {
     try {

@@ -8,7 +8,7 @@
     font-family: "Raleway", sans-serif;
     font-weight: 700;
     margin-top: 1rem;
-    margin-bottom: .75rem;
+    margin-bottom: 0;
     text-align: center;
 }
 .body-backButton {
@@ -26,7 +26,7 @@
 .createPostPage .tagImages {
     display: flex;
     justify-content: center;
-    margin-top: 2rem;
+    margin-top: 5rem;
     margin-bottom: 1rem;
     flex-wrap: wrap;
 }
@@ -38,9 +38,29 @@
     justify-content: center;
     align-items: center;
     margin: 0 .75rem;
+    padding: 0 .25rem;
 }
 
 .createPostPage .singleTagImage img {
     width: 60px;
     height: 60px;
+}
+
+.createPostPage .postForm-container {
+    display: flex;
+    justify-content: center;
+}
+.createPostPage .postForm {
+    display: flex;
+    flex-direction: column;
+}
+.createPostPage .postForm-category {
+    width: 20vw;
+    min-width: 200px;
+    margin-bottom: 1rem;
+}
+.createPostPage .postForm-title,
+.createPostPage .postForm-content {
+    width: 70vw;
+    margin-top: .5rem;
 }

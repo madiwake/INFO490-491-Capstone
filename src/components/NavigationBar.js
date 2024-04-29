@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import Offcanvas from 'react-bootstrap/Offcanvas';
 import { signInWithRedirect, signOut, GoogleAuthProvider } from "firebase/auth";
 
 function NavBanner(props) {
@@ -32,6 +33,9 @@ function NavBanner(props) {
 }
 
 export default function NavigationBar(props) {
+    const [noticeShowing, setNoticeShowing] = useState(true);
+    const handleNoticeClose = () => setNoticeShowing(false);
+
     const googleSignIn = () => {
         const provider = new GoogleAuthProvider();
         signInWithRedirect(props.auth, provider);
@@ -43,6 +47,15 @@ export default function NavigationBar(props) {
 
     return (
         <header className="navigation-header">
+            <Offcanvas className="websiteNotice" show={noticeShowing} onHide={handleNoticeClose} placement="top">
+                <Offcanvas.Header closeButton>
+                <Offcanvas.Title>Notice</Offcanvas.Title>
+                </Offcanvas.Header>
+                <Offcanvas.Body>
+                    This application will be moving to open-source effective May 1st. 
+                    Please be aware of this when creating an account and posting and replying to the discussion. Thank you!
+                </Offcanvas.Body>
+            </Offcanvas>
             <nav className="navBar">
                 <h1 className="navBar-logo">
                     <NavLink 

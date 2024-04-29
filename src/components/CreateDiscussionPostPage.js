@@ -77,7 +77,7 @@ export default function CreateDiscussionPostPage(props){
                             aria-label="choose a thread"
                             id="category"
                         >
-                            <option>Choose a Thread:</option>
+                            <option className="postForm-category-placeholder">Choose a Thread:</option>
                             <option value="social">Social</option>
                             <option value="Venting">Venting</option>
                             <option value="Advice">Advice</option>
@@ -91,20 +91,21 @@ export default function CreateDiscussionPostPage(props){
                                 id="title"
                                 placeholder="Title"
                                 maxLength={300}
+                                className="postForm-title-textBox"
                             />
                             <Form.Text id="title">Please limit title to no more than 300 characters</Form.Text>
                         </Form.Group>
                         <textarea 
                             name="content"
                             id="content" 
-                            placeholder="Content"
+                            placeholder="Text"
                             className="postForm-content" 
                         ></textarea>
                         <button 
                             className="create-post-button" 
                             type="submit"
                         >
-                            Submit
+                            Post
                         </button>
                     </Form>
                   

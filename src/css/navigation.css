@@ -43,10 +43,11 @@ div.howToPage .navigation-header .FAQ-link .navBar-menu-item-link {
 }
 
 .navigation-header .sign-in-button {
-    background-color: transparent;
-    border: 1px solid #2F4775;
-    border-radius: 25px;
-    padding: 0 .75rem;
+    background-color: white;
+    box-shadow: 1px 4px 10px 2px rgba(0, 0, 0, 0.25);
+    border: none;
+    border-radius: 7px;
+    padding: .125rem .75rem;
     margin-bottom: 1rem;
     margin-right: 1rem;
     margin: 0 1rem 1rem 2.5rem;

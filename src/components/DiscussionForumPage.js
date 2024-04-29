@@ -82,43 +82,6 @@ const DiscussionForumPage = (props) => {
     return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   const title = e.target.title.value;
-  //   const content = e.target.content.value;
-  //   const category = e.target.category.value;
-  //   const timestamp = Date.now();
-  
-  //   try {
-  //     const docRef = await addDoc(collection(props.firestore, 'forumposts'), {
-  //       title,
-  //       content,
-  //       category,
-  //       timestamp,
-  //       userId: user?.uid,
-  //       likes: 0 // Initialize likes count
-  //     });
-
-  //     const newPost = {
-  //       id: docRef.id,
-  //       title,
-  //       content,
-  //       category,
-  //       timestamp,
-  //       userId: user?.uid,
-  //       likes: 0, // Initialize likes count
-  //       likedByUser: false // Initialize likedByUser field
-  //     };
-
-  //     setPosts(prevPosts => [...prevPosts, newPost]);
-
-  //     e.target.reset();
-  //     // setShowCreatePost(false); replace with navigate back to discussion page
-  //   } catch (error) {
-  //     console.error("Error adding document: ", error);
-  //   }
-  // };
-
   const handleLike = async (postId) => {
     try {
       const postRef = doc(props.firestore, 'forumposts', postId);
@@ -301,18 +264,7 @@ const DiscussionForumPage = (props) => {
               currentCategory
             }
           </h3>
-          {user === null ? 
-            <div> 
-              <button 
-                onClick={googleSignIn} 
-                alt="sign in with google" 
-                type="button"
-                className="signinToCreatePost-button"
-              >
-                Sign in to Post
-              </button>
-            </div>
-          :
+          {user !== null &&
             <div>
               {!showCreatePost && (
                 <div>
@@ -321,35 +273,16 @@ const DiscussionForumPage = (props) => {
                     onClick={() => navigate("/create-discussion-post")}
                   >
                     Create Post
+                    <img src="./img/create-icon.png" alt="a blue plus icon"/>
                   </button>
                 </div>
               )}
-              {/* {showCreatePost && (
-                <div className="input">
-                  <form onSubmit={handleSubmit}>
-                    <div>
-                      <input type="text" name="title" placeholder="Title" required />
-                    </div>
-                    <div>
-                      <textarea name="content" placeholder="Content" required></textarea>
-                    </div>
-                    <div>
-                      <label htmlFor="category">Select Category:</label>
-                      <select id="category" name="category">
-                        <option value="Social">Social</option>
-                        <option value="Venting">Venting</option>
-                        <option value="Advice">Advice</option>
-                        <option value="Questions">Questions</option>
-                      </select>
-                    </div>
-                    <button className={"create-post-button"} type="submit">Submit</button>
-                  </form>
-                </div>
-              )} */}
             </div>
           }
         </div>
-        <p>All posts are anonymous! Even if you are logged in, you can feel comfortable posting and commenting without people knowing it's you. You are free to disclose your name within your post or reply, but you don't have too!</p>
+        {user === null && <p className="forumNotice">You must be signed in to post.</p>}
+        <p className="forumNotice anonNotice">All posts are anonymous!</p>
+        <small className="forumNotice"> Even if you are logged in, you can feel comfortable posting and commenting without people knowing it's you. You are free to disclose your name within your post or reply, but you don't have too!</small>
         <div className="body-posts">
           <div className="allforumCards">
             {posts.map((post, index) => (
@@ -367,17 +300,14 @@ const DiscussionForumPage = (props) => {
                 </button>
                 <div className="forumCard-post-container">
                   <div className="textSection">
-                    <div className="title-and-category">
-                      <div className="category-icon">
-                        {post.category === "Social" && <img src="/img/social-discussion-icon.png" alt="Social" />}
-                        {post.category === "Venting" && <img src="/img/venting-discussion-icon.png" alt="Venting" />}
-                        {post.category === "Advice" && <img src="/img/advice-discussion-icon.png" alt="Advice" />}
-                        {post.category === "Questions" && <img src="/img/question-discussion-icon.png" alt="Questions" />}
+                    <div className="forumCard-textSection-header-container">
+                      <div className="forumCard-textSection-header">
+                        <h3>{post.title}</h3>
+                        <p className={`forumCard-categoryTag ${post.category}`}>{post.category}</p>
                       </div>
-                      <h3>{post.title}</h3>
+                      <small>Posted on: {formatTimestamp(post.timestamp)}</small>
                     </div>
                     <p>{post.content}</p>
-                    <p>Posted on: {formatTimestamp(post.timestamp)}</p>
                   </div>
                   <div className="textSection-buttons">
                     <button 

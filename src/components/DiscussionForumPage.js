@@ -2,20 +2,18 @@ import React, { useState, useEffect } from "react";
 import Footer from "./Footer";
 import NavigationBar from './NavigationBar';
 import { useAuthState } from "react-firebase-hooks/auth";
-import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc, query, where, getDocs as getSubcollectionDocs } from "firebase/firestore";
+import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc, query, where, getDocs as getSubcollectionDocs, getDoc, setDoc } from "firebase/firestore";
 import { signInWithRedirect, GoogleAuthProvider } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
 const DiscussionForumPage = (props) => {
   const [user] = useAuthState(props.auth);
-  // const [posts, setPosts] = useState([]);
-  const posts = props.posts;
-  const setPosts = props.setPosts;
+  const [posts, setPosts] = useState([]);
   const [showCreatePost, setShowCreatePost] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const [currentCategory, setCurrentCategory] = useState("All");
-  const [replyContent, setReplyContent] = useState(""); // Initialize reply content state
-  const [likedPosts, setLikedPosts] = useState([]); // Store liked posts for the current user
+  const [replyContent, setReplyContent] = useState("");
+  const [likedPosts, setLikedPosts] = useState([]); 
 
   const navigate = useNavigate();
 
@@ -26,13 +24,11 @@ const DiscussionForumPage = (props) => {
 
   useEffect(() => {
     fetchData();
-    fetchLikedPosts(); // Fetch liked posts for the current user
   }, [currentCategory]);
 
   useEffect(() => {
-    // Save liked posts to localStorage whenever the likedPosts state changes
-    localStorage.setItem("likedPosts", JSON.stringify(likedPosts));
-  }, [likedPosts]);
+    fetchLikedPosts();
+  }, [user]);
 
   const fetchData = async () => {
     try {
@@ -41,36 +37,44 @@ const DiscussionForumPage = (props) => {
 
       for (const postDoc of postsQuerySnapshot.docs) {
         const postData = postDoc.data();
-        const repliesQuerySnapshot = await getSubcollectionDocs(query(collection(props.firestore, 'forumposts', postDoc.id, 'replies')));
+        const repliesQuerySnapshot = await getDocs(query(collection(props.firestore, 'forumposts', postDoc.id, 'replies')));
 
         const replies = [];
         repliesQuerySnapshot.forEach(replyDoc => {
           replies.push({ id: replyDoc.id, ...replyDoc.data() });
         });
 
-        if (currentCategory === "All" || postData.category === currentCategory) {
-          fetchedPosts.push({
-            id: postDoc.id,
-            ...postData,
-            likedByUser: likedPosts.includes(postDoc.id), // Check if the post is liked by the user
-            showReplyBox: false,
-            showReplies: false,
-            replies: replies
-          });
-        }
+        fetchedPosts.push({
+          id: postDoc.id,
+          ...postData,
+          showReplyBox: false,
+          showReplies: false,
+          replies: replies
+        });
       }
 
       setPosts(fetchedPosts);
     } catch (error) {
       console.error("Error fetching documents: ", error);
     }
-  };  
+  };
 
   const fetchLikedPosts = async () => {
     try {
-      const likedPosts = localStorage.getItem("likedPosts");
-      if (likedPosts) {
-        setLikedPosts(JSON.parse(likedPosts));
+      if (user) {
+        const userDocRef = doc(props.firestore, 'users', user.uid);
+        const userDocSnapshot = await getDoc(userDocRef);
+        
+        if (userDocSnapshot.exists()) {
+          const userData = userDocSnapshot.data();
+          if (userData.likedPosts) {
+            setLikedPosts(userData.likedPosts);
+          } else {
+            setLikedPosts([]);
+          }
+        } else {
+          await setDoc(userDocRef, { likedPosts: [] });
+        }
       }
     } catch (error) {
       console.error("Error fetching liked posts: ", error);
@@ -84,52 +88,59 @@ const DiscussionForumPage = (props) => {
 
   const handleLike = async (postId) => {
     try {
-      const postRef = doc(props.firestore, 'forumposts', postId);
       const postIndex = posts.findIndex(post => post.id === postId);
-      const alreadyLiked = posts[postIndex].likedByUser;
+      const post = posts[postIndex];
   
-      if (!alreadyLiked) {
-        await updateDoc(postRef, {
-          likes: posts[postIndex].likes + 1
-        });
-        await addDoc(collection(props.firestore, 'likes'), { userId: user.uid, postId });
-        setPosts(prevPosts => {
-          const updatedPosts = [...prevPosts];
-          updatedPosts[postIndex].likes++;
-          updatedPosts[postIndex].likedByUser = true;
-          return updatedPosts;
-        });
-        setLikedPosts(prevLikedPosts => [...prevLikedPosts, postId]); // Add postId to likedPosts state
-      } else {
-        // Unlike the post
-        await updateDoc(postRef, {
-          likes: posts[postIndex].likes - 1
-        });
-        // Remove like from database
-        const likesQuerySnapshot = await getDocs(query(collection(props.firestore, 'likes'), where("userId", "==", user.uid), where("postId", "==", postId)));
-        likesQuerySnapshot.forEach(async (likeDoc) => {
-          await deleteDoc(doc(props.firestore, 'likes', likeDoc.id));
-        });
-        // Update local state
-        setPosts(prevPosts => {
-          const updatedPosts = [...prevPosts];
-          updatedPosts[postIndex].likes--;
-          updatedPosts[postIndex].likedByUser = false;
-          return updatedPosts;
-        });
-        setLikedPosts(prevLikedPosts => prevLikedPosts.filter(id => id !== postId)); // Remove postId from likedPosts state
+      if (post) {
+        if (likedPosts.includes(postId)) {
+          // Unlike the post
+          await updateDoc(doc(props.firestore, 'forumposts', postId), {
+            likes: post.likes - 1
+          });
+
+          setLikedPosts(prevLikedPosts => prevLikedPosts.filter(id => id !== postId)); // Remove postId from likedPosts
+          // Update local state to reflect the unlike action
+          setPosts(prevPosts => {
+            const updatedPosts = [...prevPosts];
+            updatedPosts[postIndex].likes--; // Decrement likes
+            updatedPosts[postIndex].likedByUser = false;
+            return updatedPosts;
+          });
+
+          await updateDoc(doc(props.firestore, 'users', user.uid), {
+            likedPosts: likedPosts.filter(id => id !== postId) // Remove postId from likedPosts in Firestore
+          });
+        } else {
+          // Like the post
+          await updateDoc(doc(props.firestore, 'forumposts', postId), {
+            likes: post.likes + 1
+          });
+
+          setLikedPosts(prevLikedPosts => [...prevLikedPosts, postId]); // Add postId to likedPosts
+          // Update local state to reflect the like action
+          setPosts(prevPosts => {
+            const updatedPosts = [...prevPosts];
+            updatedPosts[postIndex].likes++; // Increment likes
+            updatedPosts[postIndex].likedByUser = true;
+            return updatedPosts;
+          });
+
+          await updateDoc(doc(props.firestore, 'users', user.uid), {
+            likedPosts: [...likedPosts, postId] // Add postId to likedPosts in Firestore
+          });
+        }
       }
     } catch (error) {
       console.error("Error updating likes: ", error);
     }
-  };
+  };  
   
   const handleReply = async (postId, replyContent, index) => {
     try {
       const postRef = doc(props.firestore, 'forumposts', postId);
       const timestamp = Date.now();
-      const newReply = { reply: replyContent, timestamp }; // Create new reply object
-      const replyDocRef = await addDoc(collection(postRef, 'replies'), newReply); // Add reply to Firestore
+      const newReply = { reply: replyContent, timestamp };
+      const replyDocRef = await addDoc(collection(postRef, 'replies'), newReply);
   
       setPosts(prevPosts => {
         const updatedPosts = [...prevPosts];
@@ -139,7 +150,7 @@ const DiscussionForumPage = (props) => {
         return updatedPosts;
       });
   
-      setReplyContent(""); // Clear reply content after submission
+      setReplyContent("");
     } catch (error) {
       console.error("Error adding reply: ", error);
     }
@@ -165,7 +176,6 @@ const DiscussionForumPage = (props) => {
     setSearchInput(event.target.value);
   }
 
- // JSX code with category icons directly embedded
   return (
     <div className="forumPage">
       <NavigationBar 
@@ -294,7 +304,7 @@ const DiscussionForumPage = (props) => {
                   <p>{post.likes}</p>
                   <img 
                     className="forumCard-likeIcon"
-                    src={post.likedByUser ? "/img/filled-heart.png" : "/img/empty-heart.png"}
+                    src={likedPosts.includes(post.id) ? "/img/filled-heart.png" : "/img/empty-heart.png"}
                     alt="Like"
                   />
                 </button>

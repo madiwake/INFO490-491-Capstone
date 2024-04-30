@@ -2,25 +2,18 @@ import React, { useState, useEffect } from "react";
 import Footer from "./Footer";
 import NavigationBar from './NavigationBar';
 import { useAuthState } from "react-firebase-hooks/auth";
-import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc, query, where, getDocs as getSubcollectionDocs, getDoc, setDoc } from "firebase/firestore";
-import { signInWithRedirect, GoogleAuthProvider } from "firebase/auth";
+import { collection, getDocs, addDoc, updateDoc, doc, query, getDoc, setDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
 const DiscussionForumPage = (props) => {
   const [user] = useAuthState(props.auth);
   const [posts, setPosts] = useState([]);
-  const [showCreatePost, setShowCreatePost] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const [currentCategory, setCurrentCategory] = useState("All");
   const [replyContent, setReplyContent] = useState("");
   const [likedPosts, setLikedPosts] = useState([]); 
 
   const navigate = useNavigate();
-
-  const googleSignIn = () => {
-    const provider = new GoogleAuthProvider();
-    signInWithRedirect(props.auth, provider);
-  };
 
   useEffect(() => {
     fetchData();
@@ -288,7 +281,7 @@ const DiscussionForumPage = (props) => {
           </h3>
           {user !== null &&
             <div>
-              {!showCreatePost && (
+              {user !== null && (
                 <div>
                   <button 
                     className="create-post-button"
@@ -309,17 +302,28 @@ const DiscussionForumPage = (props) => {
           <div className="allforumCards">
             {posts.map((post, index) => (
               <div key={index} className="forumCard">
-                <button 
-                  onClick={() => handleLike(post.id)}
-                  className="forumCard-likeButton"
-                >
-                  <p>{post.likes}</p>
-                  <img 
-                    className="forumCard-likeIcon"
-                    src={likedPosts.includes(post.id) ? "/img/filled-heart.png" : "/img/empty-heart.png"}
-                    alt="Like"
-                  />
-                </button>
+                {user === null ? 
+                  <div className="forumCard-likeButton">
+                    <p>{post.likes}</p>
+                    <img 
+                      className="forumCard-likeIcon"
+                      src="/img/filled-heart.png"
+                      alt="heart icon"
+                    />
+                  </div>
+                  :
+                  <button 
+                    onClick={() => handleLike(post.id)}
+                    className="forumCard-likeButton"
+                  >
+                    <p>{post.likes}</p>
+                    <img 
+                      className="forumCard-likeIcon"
+                      src={likedPosts.includes(post.id) ? "/img/filled-heart.png" : "/img/empty-heart.png"}
+                      alt="heart icon"
+                    />
+                  </button>
+                }
                 <div className="forumCard-post-container">
                   <div className="textSection">
                     <div className="forumCard-textSection-header-container">
@@ -332,12 +336,14 @@ const DiscussionForumPage = (props) => {
                     <p>{post.content}</p>
                   </div>
                   <div className="textSection-buttons">
-                    <button 
-                      onClick={() => toggleReplyBox(index)}
-                      className={`textSection-replyButton ${post.showReplyBox ? 'active' : ''}`}
-                    >
-                      {post.showReplyBox ? "Cancel" : "Reply"}
-                    </button>
+                    {user !== null &&
+                      <button 
+                        onClick={() => toggleReplyBox(index)}
+                        className={`textSection-replyButton ${post.showReplyBox ? 'active' : ''}`}
+                      >
+                        {post.showReplyBox ? "Cancel" : "Reply"}
+                      </button>
+                    }
                     {
                       post.replies && 
                       post.replies.length > 0 && 

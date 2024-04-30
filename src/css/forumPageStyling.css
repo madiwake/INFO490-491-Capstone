@@ -41,14 +41,7 @@
     padding: 0;
     margin: 0;
 }
-.forumPage .signinToCreatePost-button,
-.forumPage .create-post-button {
-    background-color: transparent;
-    border: 1px solid #2F4775;
-    border-radius: 20px;
-    padding: 0 .75rem;
-    margin: 0 1rem .75rem 1rem;
-}
+
 .forumPage .forumNotice {
     margin-bottom: .5rem;
     padding: 0;
@@ -111,11 +104,11 @@
     align-items: center;
 }
 .forumPage .forumCard-textSection-header h3 {
-    margin: 0;
-    margin-right: .75rem;
+    margin: .25rem .75rem 0 0;
 }
 .forumPage .forumCard-categoryTag {
     margin: 0;
+    margin-top: .25rem;
     border-radius: 20px;
     padding: 0 .5rem;
 }
@@ -160,6 +153,7 @@
 }
 .forumPage .forumCard-likeIcon {
     width: 23px;
+    height: 24.55px;
     padding-top: .2rem;
 }
 .forumPage .forumCard-likeButton p {

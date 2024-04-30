@@ -3,13 +3,30 @@ import Carousel from 'react-bootstrap/Carousel';
 import Footer from './Footer';
 import NavigationBar from './NavigationBar';
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useNavigate } from "react-router-dom";
 
 function PageCarousel() {
     const [carouselIndex, setCarouselIndex] = useState(0);
+    const navigate = useNavigate();
 
     const handleSelect = (selectedIndex) => {
         setCarouselIndex(selectedIndex);
     };
+
+    const CarouselButton = ({link}) => {
+        return (
+            <button 
+                onClick={() => { 
+                    navigate(link); 
+                    window.scrollTo(0, 0)
+                }} 
+                className="carousel-button"
+            >
+                VISIT THE PAGE
+            </button>
+        )
+    }
+
     return (
         <Carousel 
             activeIndex={carouselIndex} 
@@ -29,6 +46,7 @@ function PageCarousel() {
                     <p>
                         The resource page allows you to easily connect with varying resources that fit your personalized needs. You can search and filter through on-campus, Seattle, and online resources to connect with resources when and where you need them. 
                     </p>
+                    <CarouselButton link="/resources" />
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item 
@@ -45,6 +63,7 @@ function PageCarousel() {
                     <p>
                         The discussion page allows you to connect and chat with other students about shared inquiries. You are able to read others' posts, post your own questions, reply, and upvote. You can also browse through our designated pages for advice, socializing, venting and questions.
                     </p>
+                    <CarouselButton link="/discussion-forum" />
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item 
@@ -61,6 +80,7 @@ function PageCarousel() {
                     <p>
                         The How-To page allows you to look at common processes, issues, and questions that other students with disabilities have struggled with to discover digestible guides and answers for how to navigate these situations. 
                     </p>
+                    <CarouselButton link="/how-to" />
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item 

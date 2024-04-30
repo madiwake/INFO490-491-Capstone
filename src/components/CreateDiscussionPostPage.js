@@ -17,18 +17,18 @@ export default function CreateDiscussionPostPage(props){
         const content = e.target.content.value;
         const category = e.target.category.value;
         const timestamp = Date.now();
-      
+    
         try {
-          const docRef = await addDoc(collection(props.firestore, 'forumposts'), {
+        const docRef = await addDoc(collection(props.firestore, 'forumposts'), {
             title,
             content,
             category,
             timestamp,
             userId: user?.uid,
             likes: 0 // Initialize likes count
-          });
+        });
     
-          const newPost = {
+        const newPost = {
             id: docRef.id,
             title,
             content,
@@ -37,18 +37,15 @@ export default function CreateDiscussionPostPage(props){
             userId: user?.uid,
             likes: 0, // Initialize likes count
             likedByUser: false // Initialize likedByUser field
-          };
+        };
     
-          setPosts(prevPosts => [...prevPosts, newPost]);
+        setPosts(prevPosts => [...prevPosts, newPost]);
     
-          e.target.reset();
-          navigate("/discussion-forum")
+        e.target.reset();
+        navigate("/discussion-forum")
         } catch (error) {
-          console.error("Error adding document: ", error);
+        console.error("Error adding document: ", error);
         }
-        console.log(e.target.category.value)
-        console.log(e.target.title.value)
-        console.log(e.target.content.value)
     };
 
     return (
@@ -72,17 +69,28 @@ export default function CreateDiscussionPostPage(props){
                         onSubmit={handleSubmit}
                         className="postForm"
                     >
-                        <Form.Select 
+                        <Form.Group
                             className="postForm-category"
-                            aria-label="choose a thread"
-                            id="category"
                         >
-                            <option className="postForm-category-placeholder">Choose a Thread:</option>
-                            <option value="social">Social</option>
-                            <option value="Venting">Venting</option>
-                            <option value="Advice">Advice</option>
-                            <option value="Questions">Questions</option>
-                        </Form.Select>
+                            <Form.Select
+                                aria-label="choose a thread"
+                                id="category"
+                                required
+                                as="select"
+                                type="select"
+                            >
+                                <option 
+                                    value="" 
+                                    className="postForm-category-placeholder"
+                                >
+                                    Choose a Thread:
+                                </option>
+                                <option value="social">Social</option>
+                                <option value="Venting">Venting</option>
+                                <option value="Advice">Advice</option>
+                                <option value="Questions">Questions</option>
+                            </Form.Select>
+                        </Form.Group>
                         <Form.Group
                             className="postForm-title"
                         >
@@ -92,6 +100,7 @@ export default function CreateDiscussionPostPage(props){
                                 placeholder="Title"
                                 maxLength={300}
                                 className="postForm-title-textBox"
+                                required
                             />
                             <Form.Text id="title">Please limit title to no more than 300 characters</Form.Text>
                         </Form.Group>

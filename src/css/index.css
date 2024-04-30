@@ -14,3 +14,13 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
   font-style: normal;
 }
+
+.websiteNotice .offcanvas-header {
+  padding: 1rem 1rem 0 1rem;
+}
+.websiteNotice .offcanvas-body {
+  padding: 0 1rem 1rem 1rem;
+}
+.websiteNotice {
+  --bs-offcanvas-height: fit-content;
+}

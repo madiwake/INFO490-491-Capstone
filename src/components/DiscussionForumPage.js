@@ -24,7 +24,7 @@ const DiscussionForumPage = (props) => {
 
   useEffect(() => {
     fetchData();
-  }, [currentCategory]);
+  }, [currentCategory, searchInput]);
 
   useEffect(() => {
     fetchLikedPosts();
@@ -53,7 +53,18 @@ const DiscussionForumPage = (props) => {
         });
       }
 
-      setPosts(fetchedPosts);
+      // Filter posts based on searchInput
+      const filteredPosts = fetchedPosts.filter(post => {
+        // Convert title/content to lowercase for case-insensitive search
+        const title = post.title.toLowerCase();
+        const content = post.content.toLowerCase();
+        // Convert searchInput to lowercase
+        const search = searchInput.toLowerCase();
+        // Check if searchInput is present in either title or content
+        return title.includes(search) || content.includes(search);
+      });
+
+      setPosts(filteredPosts); // Set filtered posts
     } catch (error) {
       console.error("Error fetching documents: ", error);
     }
@@ -174,7 +185,8 @@ const DiscussionForumPage = (props) => {
 
   const handleSearchChange = (event) => {
     setSearchInput(event.target.value);
-  }
+  };
+
 
   return (
     <div className="forumPage">
@@ -345,8 +357,8 @@ const DiscussionForumPage = (props) => {
                       <textarea 
                         className="replyBox-textArea"
                         placeholder="  Type your reply..." 
-                        onChange={(e) => setReplyContent(e.target.value)} // Capture reply content
-                        value={replyContent} // Bind reply content to state
+                        onChange={(e) => setReplyContent(e.target.value)}
+                        value={replyContent}
                       />
                       <button 
                         onClick={() => handleReply(post.id, replyContent, index)}

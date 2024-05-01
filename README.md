@@ -66,11 +66,15 @@ In order to run the codebase, npm install command is necessary to install releva
 #### "What to work on" and Future Ideas and Intentions for REACH
 The following ideas are intended to be used an inspiration for future development of REACH. If our team had more time, these would be things we would do to continue working on the project!
 Future Functionality Ideas
-1. Accessibility Settings
+1. Profile and User Capabilities
+    - The ability for users to view their profile. On their profile, they would have the option to see discussion posts that they are liked, saved, posted or replied to. They would be able to upload a profile picture. And they would be able to alteer their login credentials (if something other than google authentication was used). Users would also be able to alter their screen name that can be displayed on theit posts (within certain parameters and with moderation for appropriateness - must be their real name or a version of it).
+2. Optional Anonymous Posting to Discussion Forums
+    - Provide users with the option of either posting anonymous or with their name and profile picture showing on their post. This will allow users to create more genuine bonds. Could alternatively create another forum category for "Friend Finding" or something similar have have that category be NOT anonymous so that people can identify eachother and form bonds.
+3. Accessibility Settings
     - Accessible through the profile (if a user has an account) a user would be able to alter the styling of the website to their preference and could improve accessibility. Things that we would allow the user to change include (but are not limited to), Light mode versus dark mode, font size, font type, etc). We would do this by allow the user to “save” settings that would then be saved within a secure user database. Once the user logs in, those settings would be checked on initial render, and the necessary changes would be made to the users application.
-2. "AI Robot"/Interactive Chat
+4. "AI Robot"/Interactive Chat
     - This feature would be accessible anywhere within the website (a fixed position somewhere on the screen). The intention for this would be to guide the users to the necessary information or resourced based on their inputs provided. An example of this would be the chat that pops up upon loading https://jobs.thermofisher.com/global/en. This feature would allow users to interact with the application and get more streamlined assistance.
-3. Searchable How-To Page
+5. Searchable How-To Page
     - Including a search bar that users can utilize to find questions they are looking for would streamline the process and allow users to easily check if their question is present. We would do this by including an input feature in the page, tracking the value the user enters and then filtering the question cards based on the input.
-4. Resource/Question Submission Form
+6. Resource/Question Submission Form
     - This feature would be a form or submission of some kind, that allow users to either propose a resource that may be good to include on the Resources page or allows users to propose a question they believe should be answered and posted on the administration-controlled how-to page. By submitting a request/form, the request would be sent to administration (us, as the developers) for review. Further ideas about this topic involve automating the process of reviewing the resource or question for credibility and automatically adding it to the internal datasets that are used to generate the resource lists and the how-to page questions and answers. However, this raises concerns regarding the validity of the answers and information that the AI generates regarding the submission.

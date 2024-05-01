@@ -12,6 +12,7 @@ const DiscussionForumPage = (props) => {
   const [currentCategory, setCurrentCategory] = useState("All");
   const [replyContent, setReplyContent] = useState("");
   const [likedPosts, setLikedPosts] = useState([]); 
+  const [loading, setLoading] = useState(true); // Loading state
 
   const navigate = useNavigate();
 
@@ -25,6 +26,7 @@ const DiscussionForumPage = (props) => {
 
   const fetchData = async () => {
     try {
+      setLoading(true); // Set loading to true before fetching data
       const postsQuerySnapshot = await getDocs(collection(props.firestore, 'forumposts'));
       const fetchedPosts = [];
 
@@ -58,6 +60,7 @@ const DiscussionForumPage = (props) => {
       });
 
       setPosts(filteredPosts); // Set filtered posts
+      setLoading(false); // Set loading to false when posts are fetched
     } catch (error) {
       console.error("Error fetching documents: ", error);
     }
@@ -300,95 +303,99 @@ const DiscussionForumPage = (props) => {
         <small className="forumNotice"> Even if you are logged in, you can feel comfortable posting and commenting without people knowing it's you. You are free to disclose your name within your post or reply, but you don't have too!</small>
         <div className="body-posts">
           <div className="allforumCards">
-            {posts.map((post, index) => (
-              <div key={index} className="forumCard">
-                {user === null ? 
-                  <div className="forumCard-likeButton">
-                    <p>{post.likes}</p>
-                    <img 
-                      className="forumCard-likeIcon"
-                      src="/img/filled-heart.png"
-                      alt="heart icon"
-                    />
-                  </div>
-                  :
-                  <button 
-                    onClick={() => handleLike(post.id)}
-                    className="forumCard-likeButton"
-                  >
-                    <p>{post.likes}</p>
-                    <img 
-                      className="forumCard-likeIcon"
-                      src={likedPosts.includes(post.id) ? "/img/filled-heart.png" : "/img/empty-heart.png"}
-                      alt="heart icon"
-                    />
-                  </button>
-                }
-                <div className="forumCard-post-container">
-                  <div className="textSection">
-                    <div className="forumCard-textSection-header-container">
-                      <div className="forumCard-textSection-header">
-                        <h3>{post.title}</h3>
-                        <p className={`forumCard-categoryTag ${post.category}`}>{post.category}</p>
-                      </div>
-                      <small>Posted on: {formatTimestamp(post.timestamp)}</small>
-                    </div>
-                    <p>{post.content}</p>
-                  </div>
-                  <div className="textSection-buttons">
-                    {user !== null &&
-                      <button 
-                        onClick={() => toggleReplyBox(index)}
-                        className={`textSection-replyButton ${post.showReplyBox ? 'active' : ''}`}
-                      >
-                        {post.showReplyBox ? "Cancel" : "Reply"}
-                      </button>
-                    }
-                    {
-                      post.replies && 
-                      post.replies.length > 0 && 
-                      (
-                        <button 
-                          onClick={() => toggleReplies(index)}
-                          className={`textSection-showRepliesButton ${post.showReplies ? 'active' : ''}`}
-                        >
-                          {post.showReplies ? "Hide Replies" : "Show Replies"}
-                        </button>
-                      )
-                    }
-                  </div>
-                </div>
-                {post.showReplyBox && (
-                    <div className="replyBox">
-                      <textarea 
-                        className="replyBox-textArea"
-                        placeholder="  Type your reply..." 
-                        onChange={(e) => setReplyContent(e.target.value)}
-                        value={replyContent}
+            {loading ? ( // Conditionally rendering "Loading..." message
+              <div className="loading">Loading Posts...</div>
+            ) : (
+              posts.map((post, index) => (
+                <div key={index} className="forumCard">
+                  {user === null ? 
+                    <div className="forumCard-likeButton">
+                      <p>{post.likes}</p>
+                      <img 
+                        className="forumCard-likeIcon"
+                        src="/img/filled-heart.png"
+                        alt="heart icon"
                       />
-                      <button 
-                        onClick={() => handleReply(post.id, replyContent, index)}
-                        className="replyBox-submitButton"
-                      >
-                        Post Reply
-                      </button>
                     </div>
-                  )}
-                { 
-                  post.showReplies && 
-                  post.replies &&
-                  post.replies.map((reply, replyIndex) => (
-                      <div 
-                        key={replyIndex}
-                        className="forumCard-reply-container"
-                      >
-                        <p>Reply: {reply.reply}</p>
-                        <p>Posted at: {formatTimestamp(reply.timestamp)}</p>
+                    :
+                    <button 
+                      onClick={() => handleLike(post.id)}
+                      className="forumCard-likeButton"
+                    >
+                      <p>{post.likes}</p>
+                      <img 
+                        className="forumCard-likeIcon"
+                        src={likedPosts.includes(post.id) ? "/img/filled-heart.png" : "/img/empty-heart.png"}
+                        alt="heart icon"
+                      />
+                    </button>
+                  }
+                  <div className="forumCard-post-container">
+                    <div className="textSection">
+                      <div className="forumCard-textSection-header-container">
+                        <div className="forumCard-textSection-header">
+                          <h3>{post.title}</h3>
+                          <p className={`forumCard-categoryTag ${post.category}`}>{post.category}</p>
+                        </div>
+                        <small>Posted on: {formatTimestamp(post.timestamp)}</small>
                       </div>
-                    ))
-                }
-              </div>
-            ))}
+                      <p>{post.content}</p>
+                    </div>
+                    <div className="textSection-buttons">
+                      {user !== null &&
+                        <button 
+                          onClick={() => toggleReplyBox(index)}
+                          className={`textSection-replyButton ${post.showReplyBox ? 'active' : ''}`}
+                        >
+                          {post.showReplyBox ? "Cancel" : "Reply"}
+                        </button>
+                      }
+                      {
+                        post.replies && 
+                        post.replies.length > 0 && 
+                        (
+                          <button 
+                            onClick={() => toggleReplies(index)}
+                            className={`textSection-showRepliesButton ${post.showReplies ? 'active' : ''}`}
+                          >
+                            {post.showReplies ? "Hide Replies" : "Show Replies"}
+                          </button>
+                        )
+                      }
+                    </div>
+                  </div>
+                  {post.showReplyBox && (
+                      <div className="replyBox">
+                        <textarea 
+                          className="replyBox-textArea"
+                          placeholder="  Type your reply..." 
+                          onChange={(e) => setReplyContent(e.target.value)}
+                          value={replyContent}
+                        />
+                        <button 
+                          onClick={() => handleReply(post.id, replyContent, index)}
+                          className="replyBox-submitButton"
+                        >
+                          Post Reply
+                        </button>
+                      </div>
+                    )}
+                  { 
+                    post.showReplies && 
+                    post.replies &&
+                    post.replies.map((reply, replyIndex) => (
+                        <div 
+                          key={replyIndex}
+                          className="forumCard-reply-container"
+                        >
+                          <p>Reply: {reply.reply}</p>
+                          <p>Posted at: {formatTimestamp(reply.timestamp)}</p>
+                        </div>
+                      ))
+                  }
+                </div>
+              ))
+            )}
           </div>
         </div>
       </div>
@@ -398,3 +405,4 @@ const DiscussionForumPage = (props) => {
 };
 
 export default DiscussionForumPage;
+
